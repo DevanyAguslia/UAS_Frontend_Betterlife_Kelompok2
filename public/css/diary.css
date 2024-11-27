@@ -1,0 +1,83 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body.bg-gradient {
+    background-image: linear-gradient(to top, #00153c, #001844, #001b4d, #001f55, #00225e, #012a69, #013275, #003b81, #004b92, #005ba3, #006cb4, #007dc4);
+}
+
+/* Diary Section */
+#diary h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+#diaryInput {
+    background-color: #F4F6F7;
+    color: #000;
+    border: 2px solid #3498DB;
+    border-radius: 8px;
+    transition: border 0.3s ease;
+    resize: none;
+}
+
+#diaryInput:focus {
+    border-color: #1C2833;
+}
+
+button {
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Diary Entries */
+.diary-entry {
+    margin-top: 20px;
+    background-color: #F4F6F7;
+    padding: 15px;
+    border-left: 5px solid #3498DB;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.diary-entry:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.diary-entry button {
+    background-color: #e74c3c;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    padding: 5px 10px 7px;
+    font-size: 0.9rem;
+}
+
+.diary-entry button:hover {
+    background-color: #c0392b;
+}
+
+/* Footer */
+footer {
+    color: #F4F6F7;
+}
+
+footer .social-icons a {
+    color: white;
+    font-size: 30px;
+    transition: color 0.3s;
+}
+
+footer .social-icons a:hover {
+    color: skyblue;
+}
