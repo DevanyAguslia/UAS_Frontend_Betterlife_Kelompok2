@@ -1,0 +1,102 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0331c7, #2376e9, #23a6d5, #007d96);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.sidebar {
+    background-color: #2E4053;
+    height: 90vh;
+    box-shadow: 0 0.5rem 2rem rgba(46, 64, 83, 0.5);
+    border-radius: 16px;
+}
+
+.logo h2 {
+    color: #020202;
+    text-shadow: 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.logo h2:hover {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    color: #F4F6F7;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    color: #3498DB;
+    transform: translateX(8px);
+}
+
+.nav-link.active {
+    color: #3498DB;
+    font-weight: 900;
+}
+
+.hero h1 {
+    font-size: 6rem;
+    font-weight: 900;
+    color: #000;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+    animation: infinite-growing 2.5s infinite;
+}
+
+.container-fluid {
+    flex: 1;
+    padding-bottom: 80px;
+}
+
+@keyframes infinite-growing {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.05);}
+    100% {transform: scale(1);}
+}
+
+.hero-img img {
+    animation: infinite-moving 3s ease-in-out infinite;
+}
+
+@keyframes infinite-moving {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-3%);}
+    100% {transform: translateY(0);}
+}
+
+footer {
+    background-color: #2E4053;
+    color: #F4F6F7;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 30px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: skyblue;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+}
