@@ -1,0 +1,97 @@
+/* books.css */
+
+body {
+    background-color: #2E4053;
+    color: #F4F6F7;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #3498DB;
+}
+
+.card {
+    border-color: #3498DB;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    background-color: #2E4053;
+}
+
+.card-title {
+    color: #3498DB;
+}
+
+.card-text {
+    color: #F4F6F7;
+}
+
+.custom-btn {
+    background-color: #3498DB;
+    color: #F4F6F7;
+    border: 2px solid #3498DB;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.custom-btn:hover {
+    background-color: #F4F6F7;
+    color: #3498DB;
+}
+
+#searchInput {
+    background-color: #F4F6F7;
+    color: #2E4053;
+    border: 2px solid #3498DB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#searchInput:focus {
+    border-color: #3498DB;
+    outline: none;
+    box-shadow: 0 0 10px #3498DB;
+}
+
+/* Footer */
+footer {
+    background-color: #2E4053; /* Dark Blue Gray */
+    text-align: center;
+    padding: 10px 0;
+    color: #F4F6F7; /* Light Gray */
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    color: #F4F6F7; /* Light Gray */
+    margin: 5px 0;
+}
+
+footer p:first-of-type {
+    font-size: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #F4F6F7; /* Light Gray */
+    font-size: 30px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #3498DB; /* Bright Blue */
+}
