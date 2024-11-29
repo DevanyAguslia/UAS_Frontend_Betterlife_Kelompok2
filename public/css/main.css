@@ -1,0 +1,75 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #0331c7, #2376e9, #23a6d5, #007d96) !important;
+    background-size: 400% 400% !important;
+    background-attachment: fixed !important;
+    animation: gradient 15s ease infinite;
+}
+
+/* Custom container styles */
+.main-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Gradient Animation */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Glass morphism effects */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Custom utilities */
+.text-shadow-light {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Footer */
+footer {
+    background-color: #2E4053 !important;
+    border-radius: 0 !important;
+    color: #F4F6F7;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 30px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: skyblue;
+}
+
+/* Media query adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Override Bootstrap background classes to maintain gradient */
+.bg-white, .bg-light {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
