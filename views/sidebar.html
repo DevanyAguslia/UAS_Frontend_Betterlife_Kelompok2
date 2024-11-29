@@ -1,0 +1,51 @@
+<div class="sidebar" ng-controller="SidebarController">
+    <!-- Logo Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4 px-3">
+        <a href="#!/home" class="logo text-decoration-none">
+            <h2 id="betterlife" class="text-light m-0">
+                Better<span class="text-primary">Life</span>
+            </h2>
+        </a>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav>
+        <a href="#!/home" class="nav-link text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('home')}">
+            <i class="fas fa-home"></i>
+            <span>Homepage</span>
+        </a>
+
+        <a href="#!/calendar" class="nav-link text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('calendar')}">
+            <i class="fas fa-calendar"></i>
+            <span>To-do List Calendar</span>
+        </a>
+
+        <a href="#!/pomodoro" class="nav-link text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('pomodoro')}">
+            <i class="fas fa-clock"></i>
+            <span>Pomodoro</span>
+        </a>
+
+        <a href="#!/music" class="nav-link text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('music')}">
+            <i class="fas fa-music"></i>
+            <span>Music</span>
+        </a>
+
+        <a href="#!/books" class="nav-link text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('books')}">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+        </a>
+
+        <a href="#!/diary" class="nav-link text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('diary')}">
+            <i class="fas fa-journal-whills"></i>
+            <span>Jurnal Diary</span>
+        </a>
+    </nav>
+
+    <!-- Login Link -->
+    <div class="mt-auto px-3">
+        <a href="#!/login" class="nav-link text-light d-flex align-items-center">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+        </a>
+    </div>
+</div>
