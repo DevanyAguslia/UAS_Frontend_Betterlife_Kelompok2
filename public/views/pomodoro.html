@@ -1,0 +1,136 @@
+<div class="pomodoro-container container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card main-timer-card">
+                <div class="card-header">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" ng-class="{'active': currentSession === 'focus'}" 
+                               ng-click="setSession('focus')">Focus Time</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ng-class="{'active': currentSession === 'break'}" 
+                               ng-click="setSession('break')">Break Time</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body text-center">
+                    <div class="timer-circle">
+                        <h2 class="display-4 mb-0">{{minutes|padNumber}}:{{seconds|padNumber}}</h2>
+                    </div>
+
+                    <div class="duration-selector mb-3" ng-if="!isRunning">
+                        <h5>Select Duration</h5>
+                        <div class="btn-group" role="group">
+                            <button ng-repeat="duration in availableDurations"
+                                    class="btn"
+                                    ng-class="{'btn-primary': settings.focusDuration === duration.value, 'btn-outline-primary': settings.focusDuration !== duration.value}"
+                                    ng-click="changeDuration(duration.value)">
+                                {{duration.label}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="current-settings mb-3">
+                        <small class="text-muted">
+                            Focus: {{settings.focusDuration}} min | Break: {{settings.breakDuration}} min
+                        </small>
+                    </div>
+
+                    <div class="mt-4 timer-controls">
+                        <button class="btn btn-primary mx-2" ng-click="startTimer()" ng-disabled="isRunning">
+                            <i class="fas fa-play me-2"></i><span>Start</span>
+                        </button>
+                        <button class="btn btn-primary mx-2" ng-click="pauseTimer()" ng-disabled="!isRunning">
+                            <i class="fas fa-pause me-2"></i><span>Pause</span>
+                        </button>
+                        <button class="btn btn-secondary mx-2" ng-click="resetTimer()">
+                            <i class="fas fa-redo me-2"></i><span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session Management Section -->
+            <div class="card mt-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Session Management</h5>
+                    <button class="btn btn-primary btn-sm" ng-click="showAddForm()" ng-if="!showForm">
+                        <i class="fas fa-plus me-2"></i>Add Session
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <!-- Alert Messages -->
+                    <div class="alert" ng-class="{'alert-success': feedbackType === 'success', 'alert-danger': feedbackType === 'error'}" 
+                         ng-if="feedbackMessage">
+                        {{feedbackMessage}}
+                    </div>
+
+                    <!-- Session Form -->
+                    <div class="session-form mb-4" ng-show="showForm">
+                        <form ng-submit="saveSession()">
+                            <div class="form-group mb-3">
+                                <label class="form-label">Session Type</label>
+                                <select class="form-select" ng-model="formData.type">
+                                    <option value="focus">Focus</option>
+                                    <option value="break">Break</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3" ng-if="!editMode">
+                                <label>Duration</label>
+                                <select class="form-control" ng-model="formData.duration">
+                                    <option ng-repeat="duration in availableDurations" 
+                                            value="{{duration.value}}">
+                                        {{duration.label}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="text-end mt-4">
+                                <button type="button" class="btn btn-secondary me-2" ng-click="cancelForm()">Cancel</button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{editMode ? 'Update' : 'Add'}} Session
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sessions Table -->
+                    <div class="table">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Duration</th>
+                                    <th>Completed At</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="session in sessions">
+                                    <td>{{session.type | uppercase}}</td>
+                                    <td>{{session.duration}} min</td>
+                                    <td>{{session.completedAt | date:'medium'}}</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-primary me-2" ng-click="editSession(session)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" ng-click="deleteSession(session._id)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr ng-if="sessions.length === 0">
+                                    <td colspan="4" class="text-center">No sessions found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

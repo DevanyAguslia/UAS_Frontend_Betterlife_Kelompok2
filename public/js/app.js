@@ -1,5 +1,6 @@
-angular.module('betterLife', ['ngRoute'])
-.config(function($routeProvider, $locationProvider) {
+var app = angular.module('betterLife', ['ngRoute'])
+
+app.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('!');
     
     $routeProvider
@@ -34,4 +35,10 @@ angular.module('betterLife', ['ngRoute'])
         .otherwise({
             redirectTo: '/home'
         });
+});
+
+app.filter('padNumber', function() {
+    return function(number) {
+        return (number < 10) ? '0' + number : number;
+    };
 });

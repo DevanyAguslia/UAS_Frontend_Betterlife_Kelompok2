@@ -1,0 +1,203 @@
+/* Container Styling */
+.pomodoro-container{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(46, 64, 83, 0.1);
+    background-color: white;
+    margin-bottom: 2rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-header {
+    background-color: #2E4053;
+    color: #F4F6F7;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    padding: 1rem 1.5rem;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+/* Timer Circle Modifications */
+.timer-circle {
+    width: 280px;
+    height: 280px;
+    border: 8px solid #3498DB;
+    background: radial-gradient(circle at center,
+                #2E4053 0%,
+                #2E4053 60%,
+                #3498DB 100%);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-circle:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(52, 152, 219, 0.4);
+}
+
+/* Duration Setup Styling */
+.duration-selector {
+    margin: 20px 0;
+}
+
+.duration-selector .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.duration-selector .btn {
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.duration-selector .btn:hover {
+    transform: translateY(-2px);
+}
+
+.current-settings {
+    background-color: #f8f9fa;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #3498DB;
+    border-color: #3498DB;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2E4053;
+    border-color: #2E4053;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #F4F6F7;
+    border-color: #2E4053;
+    color: #2E4053;
+}
+
+.btn-secondary:hover {
+    background-color: #2E4053;
+    border-color: #2E4053;
+    color: #F4F6F7;
+}
+
+/* Session Type */
+.nav-pills .nav-link {
+    color: #2E4053;
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #3498DB;
+    color: white;
+}
+
+/* Table Styling */
+.table {
+    color: #2E4053;
+}
+
+.table thead th {
+    background-color: #F4F6F7;
+    border-bottom: 2px solid #3498DB;
+    color: #2E4053;
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* Alert Styling */
+.alert-success {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-color: #3498DB;
+    color: #2E4053;
+}
+
+.alert-danger {
+    background-color: rgba(46, 64, 83, 0.2);
+    border-color: #2E4053;
+    color: #2E4053;
+}
+
+/* Form Controls */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #F4F6F7;
+    padding: 0.7rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #3498DB;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+/* Session History Section */
+.session-history {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.session-history h4 {
+    color: #2E4053;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Time Display */
+.display-4 {
+    color: #F4F6F7;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .timer-circle {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}

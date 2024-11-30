@@ -26,7 +26,7 @@
 }
 
 /* Navigation Links */
-.nav-link {
+.nav-link-sidebar {
     color: #F4F6F7;
     padding: 12px 20px;
     transition: all 0.3s;
@@ -35,20 +35,20 @@
     gap: 12px;
 }
 
-.nav-link i {
+.nav-link-sidebar i {
     width: 24px;
     font-size: 18px;
     text-align: center;
 }
 
-.nav-link:hover {
+.nav-link-sidebar:hover {
     color: #3498DB !important;
     font-weight: 500;
     transform: translateX(8px);
     text-decoration: none;
 }
 
-.nav-link.active {
+.nav-link-sidebar.active {
     color: #3498DB !important;
     transform: translateX(8px);
     font-weight: 500;
