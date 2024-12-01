@@ -102,14 +102,10 @@
     }
 
     .sidebar-toggle {
-        display: block;
+        display: none;
     }
 
     .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar-open {
-        transform: translateX(0);
+        transform: translateX(-25%);
     }
 }
