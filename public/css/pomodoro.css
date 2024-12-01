@@ -190,14 +190,48 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
     .timer-circle {
         width: 220px;
         height: 220px;
     }
-    
+
     .display-4 {
         font-size: 2.5rem;
+    }
+
+    .duration-selector .btn-group {
+        flex-direction: column;
+    }
+
+    .duration-selector .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .timer-controls button span {
+        display: none;
+    }
+
+    .timer-controls button i {
+        font-size: 1.5rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .session-form .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .session-form .form-select, .session-form .form-control {
+        width: 100%;
+    }
+
+    .table td i {
+        font-size: 1.2rem;
     }
 }
