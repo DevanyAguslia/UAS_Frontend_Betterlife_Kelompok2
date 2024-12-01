@@ -30,7 +30,15 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/login', {
             templateUrl: 'views/login.html',
-            controller: 'LoginController'
+            controller: 'AuthController'
+        })
+        .when('/register', {
+            templateUrl: 'views/register.html',
+            controller: 'AuthController'
+        })
+        .when('/profile', {
+            templateUrl: 'views/profile.html',
+            controller: 'AuthController'
         })
         .otherwise({
             redirectTo: '/home'

@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Register</h2>
+                    
+                    <form name="registerForm" ng-submit="register()" novalidate>
+                        <div class="alert alert-danger" ng-if="errorMessage">
+                            {{errorMessage}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="username" 
+                                name="username"
+                                ng-model="user.username" 
+                                required>
+                            <div class="text-danger" ng-show="registerForm.username.$dirty && registerForm.username.$invalid">
+                                <small ng-show="registerForm.username.$error.required">Username is required</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                class="form-control" 
+                                id="email" 
+                                name="email"
+                                ng-model="user.email" 
+                                required>
+                            <div class="text-danger" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+                                <small ng-show="registerForm.email.$error.required">Email is required</small>
+                                <small ng-show="registerForm.email.$error.email">Please enter a valid email</small>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="password" 
+                                name="password"
+                                ng-model="user.password" 
+                                required>
+                            <div class="text-danger" ng-show="registerForm.password.$dirty && registerForm.password.$invalid">
+                                <small ng-show="registerForm.password.$error.required">Password is required</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    id="terms" 
+                                    name="terms"
+                                    ng-model="user.terms" 
+                                    required>
+                                <label class="form-check-label" for="terms">
+                                    I agree to the terms & conditions
+                                </label>
+                            </div>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary w-100" 
+                            ng-disabled="registerForm.$invalid">
+                            Register
+                        </button>
+
+                        <div class="text-center mt-3">
+                            <p>Already have an account? 
+                                <a href="#!login" class="text-decoration-none">Login</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
