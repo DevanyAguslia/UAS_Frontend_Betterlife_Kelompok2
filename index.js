@@ -8,8 +8,9 @@ import { fileURLToPath } from 'url';
 // Import routes
 import pomodoroRouter from './routes/api/pomodoroRoute.js';
 import taskRouter from './routes/api/taskRoute.js';
+import booksRoute from './routes/api/booksRoute.js';
 
-// Get dirname for ES modules
+// Mendapatkan dirname untuk modul ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -28,19 +29,22 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the public directory
+// Menghubungkan rute buku
+app.use('/api/books', booksRoute);
+
+// Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes for API
+// Routes untuk API
 app.use('/api/pomodoro', pomodoroRouter);
 app.use('/api/task', taskRouter);
 
-// Route for serving index.html
+// Rute untuk melayani file index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Handle all other routes to support HTML5 History Mode
+// Menangani semua rute lainnya untuk mendukung mode HTML5 History
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -57,8 +61,9 @@ mongoose.connect(MONGOURL, {
     });
 }).catch((error) => console.log("Error connecting to database:", error));
 
-// Error handling middleware
+// Middleware untuk menangani error
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
+app.use('/api/books', booksRoute);

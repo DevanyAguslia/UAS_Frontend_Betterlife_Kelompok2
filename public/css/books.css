@@ -8,10 +8,6 @@ body {
     padding: 0;
 }
 
-h1 {
-    color: #3498DB;
-}
-
 .card {
     border-color: #3498DB;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -42,8 +38,7 @@ h1 {
 }
 
 .custom-btn:hover {
-    background-color: #F4F6F7;
-    color: #3498DB;
+    background-color: #2774a8;
 }
 
 #searchInput {
