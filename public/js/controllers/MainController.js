@@ -1,5 +1,4 @@
-angular.module('betterLife')
-.controller('MainController', function($scope, $location, $timeout) {
+app.controller('MainController', function($scope, $location, $timeout) {
     // Initialize loading state
     $scope.loading = true;
 
