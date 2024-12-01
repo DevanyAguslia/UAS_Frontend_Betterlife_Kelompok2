@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="betterLife">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Better Life</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
     <link href="css/home.css" rel="stylesheet">
     <link href="css/pomodoro.css" rel="stylesheet">
+    <link href="css/task.css" rel="stylesheet">
 </head>
+
 <body class="min-vh-100">
     <!-- Loading Spinner -->
     <div class="position-fixed top-50 start-50 translate-middle" ng-show="loading">
@@ -61,12 +65,13 @@
     <script src="js/controllers/HomeController.js"></script>
     <script src="js/controllers/CalendarController.js"></script>
     <script src="js/controllers/PomodoroController.js"></script>
-    <script src="js/controllers/MusicController.js"></script>
+    <script src="js/controllers/TaskController.js"></script>
     <script src="js/controllers/BooksController.js"></script>
     <script src="js/controllers/DiaryController.js"></script>
     <script src="js/controllers/LoginController.js"></script>
     <script src="js/controllers/SidebarController.js"></script>
-
     <script src="js/services/PomodoroService.js"></script>
+    <script src="js/services/TaskService.js"></script>
 </body>
+
 </html>

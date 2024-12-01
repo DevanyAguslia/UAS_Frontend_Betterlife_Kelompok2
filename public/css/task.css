@@ -1,0 +1,77 @@
+.task-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.task-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.task-item {
+    margin-bottom: 15px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+}
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.badge.open {
+    background-color: #000;
+    color: white;
+}
+
+.badge.progress {
+    background-color: #ffc107;
+    color: black;
+}
+
+.badge.testing {
+    background-color: #dc3545;
+    color: white;
+}
+
+.badge.done {
+    background-color: #28a745;
+    color: white;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 15px;
+}
+
+.form-control,
+.form-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-group .btn {
+    border-radius: 20px;
+    margin: 0 5px;
+    padding: 8px 20px;
+    color: #000;
+}

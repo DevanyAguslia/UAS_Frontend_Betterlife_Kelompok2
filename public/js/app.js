@@ -1,8 +1,8 @@
 var app = angular.module('betterLife', ['ngRoute'])
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('!');
-    
+
     $routeProvider
         .when('/home', {
             templateUrl: 'views/home.html',
@@ -16,9 +16,9 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: 'views/pomodoro.html',
             controller: 'PomodoroController'
         })
-        .when('/music', {
-            templateUrl: 'views/music.html',
-            controller: 'MusicController'
+        .when('/task', {
+            templateUrl: 'views/task.html',
+            controller: 'TaskController'
         })
         .when('/books', {
             templateUrl: 'views/books.html',
@@ -37,8 +37,8 @@ app.config(function($routeProvider, $locationProvider) {
         });
 });
 
-app.filter('padNumber', function() {
-    return function(number) {
+app.filter('padNumber', function () {
+    return function (number) {
         return (number < 10) ? '0' + number : number;
     };
 });
