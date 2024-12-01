@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(-45deg, #0331c7, #2376e9, #23a6d5, #007d96) !important;
