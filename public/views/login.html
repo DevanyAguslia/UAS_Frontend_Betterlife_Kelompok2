@@ -1,15 +1,22 @@
-<div class="container">
+<div class="container auth">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-md-6 col-lg-5">
             <div class="card shadow-lg">
                 <div class="card-body p-5">
+                    <!-- Back Button (Arrow Left) at Top Right -->
+                    <button class="btn btn-outline-secondary btn-sm btn-back position-absolute top-0 end-0 mt-3 me-3" ng-click="goHome()">
+                        <i class="bi bi-arrow-left"></i> <!-- Arrow Left Icon -->
+                    </button>
+
                     <h2 class="text-center mb-4">Login</h2>
-                    
+
                     <form name="loginForm" ng-submit="login()" novalidate>
+                        <!-- Error Message -->
                         <div class="alert alert-danger" ng-if="errorMessage">
                             {{errorMessage}}
                         </div>
                         
+                        <!-- Email Input -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input 
@@ -25,6 +32,7 @@
                             </div>
                         </div>
                         
+                        <!-- Password Input -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input 
@@ -39,14 +47,16 @@
                             </div>
                         </div>
 
+                        <!-- Remember Me and Forgot Password -->
                         <div class="mb-3 d-flex justify-content-between">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="remember">
-                                <label class="form-check-label" for="remember">Remember me</label>
+                                <label class="form-check-label me-2" for="remember">Remember me</label>
                             </div>
-                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                            <a href="#" class="text-decoration-none ms-2">Forgot password?</a>
                         </div>
 
+                        <!-- Login Button -->
                         <button 
                             type="submit" 
                             class="btn btn-primary w-100" 
@@ -54,6 +64,7 @@
                             Login
                         </button>
 
+                        <!-- Register Link -->
                         <div class="text-center mt-3">
                             <p>Don't have an account? 
                                 <a href="#!register" class="text-decoration-none">Register</a>

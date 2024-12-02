@@ -27,18 +27,7 @@ app.controller('AuthController', function($scope, $location, AuthService) {
                 $scope.errorMessage = 'Failed to load profile';
             });
     };
-    
-    // Read - Get All Users (Admin)
-    $scope.getAllUsers = function() {
-        AuthService.getAllUsers()
-            .then(function(response) {
-                $scope.users = response.data;
-            })
-            .catch(function(error) {
-                $scope.errorMessage = 'Failed to load users';
-            });
-    };
-    
+
     // Update Profile
     $scope.updateProfile = function() {
         if (!$scope.profileForm.$valid) return;
@@ -93,7 +82,12 @@ app.controller('AuthController', function($scope, $location, AuthService) {
         $scope.$emit('logoutSuccess');
         $location.path('/login');
     };
-   
+
+    $scope.goHome = function() {
+        $location.path('/home'); 
+    };
+
+
     // Initialize profile data if on profile page
     if ($location.path() === '/profile') {
         $scope.getProfile();
