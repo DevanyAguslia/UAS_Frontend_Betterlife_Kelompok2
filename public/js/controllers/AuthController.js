@@ -2,7 +2,7 @@ app.controller('AuthController', function($scope, $location, AuthService) {
     $scope.user = {};
     $scope.profile = {};
     $scope.users = [];
-    
+
     // Create - Register
     $scope.register = function() {
         if (!$scope.registerForm.$valid) return;
@@ -72,14 +72,28 @@ app.controller('AuthController', function($scope, $location, AuthService) {
         
         AuthService.login($scope.user)
             .then(function(response) {
-                localStorage.setItem('token', response.data.token);
-                $location.path('/profile');
+                const userData = {
+                    token: response.data.token,
+                    user: response.data.user
+                };
+                localStorage.setItem('token', userData.token);
+                localStorage.setItem('user', JSON.stringify(userData.user)); 
+                $scope.$emit('loginSuccess', userData); 
+                $location.path('/home'); 
             })
             .catch(function(error) {
                 $scope.errorMessage = error.data.message || 'Login failed';
             });
     };
-    
+
+    // Logout
+    $scope.logout = function() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        $scope.$emit('logoutSuccess');
+        $location.path('/login');
+    };
+   
     // Initialize profile data if on profile page
     if ($location.path() === '/profile') {
         $scope.getProfile();

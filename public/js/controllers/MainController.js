@@ -16,6 +16,7 @@ app.controller('MainController', function($scope, $location, $timeout) {
     };
 
     $scope.isHomePage = function() {
+        console.log('isHomePage called, path:', $location.path());
         return $location.path() === '/home';
     };
 
