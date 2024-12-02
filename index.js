@@ -11,6 +11,7 @@ import taskRouter from './routes/api/taskRoute.js';
 import authRouter from './routes/api/authRoute.js';
 import userRouter from './routes/api/userRoute.js';
 import booksRoute from './routes/api/booksRoute.js';
+import diaryRouter from './routes/api/diaryRoute.js';
 import moodRoute from './routes/api/moodRoute.js';
 
 // Mendapatkan dirname untuk modul ES
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Menghubungkan rute buku
 app.use('/api/books', booksRoute);
+app.use('/api/diary', diaryRouter);
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
