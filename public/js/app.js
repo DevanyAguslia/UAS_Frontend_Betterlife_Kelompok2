@@ -1,4 +1,7 @@
 var app = angular.module('betterLife', ['ngRoute'])
+    .run(function($rootScope) {
+        $rootScope.isLoggedIn = !!localStorage.getItem('token');
+    });
 
 app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('!');

@@ -48,11 +48,29 @@
     </nav>
 
     <!-- Login Link -->
-    <div class="mt-auto px-3">
+    <div class="mt-auto px-3" ng-if="!isLoggedIn">
         <a href="#!/login" class="nav-link nav-link-sidebar text-light d-flex align-items-center">
             <i class="fas fa-sign-in-alt"></i>
-            <span>Login</span>
+            <span class="ms-2">Login</span>
         </a>
+    </div>
+    
+    <div class="mt-auto px-3" ng-if="isLoggedIn">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#!/profile" class="nav-link nav-link-sidebar text-light d-flex align-items-center">
+                <div class="profile-circle">
+                    <img ng-src="{{user.profilePicture || '/assets/default-avatar.png'}}" 
+                         alt="Profile" 
+                         class="rounded-circle"
+                         width="40" 
+                         height="40">
+                </div>
+                <span class="ms-2">{{user.username}}</span>
+            </a>
+            <button class="btn btn-link text-light" ng-click="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
     </div>
 </div>
 <div class="container-fluid py-4">

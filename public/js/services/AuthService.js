@@ -35,8 +35,17 @@ app.service('AuthService', function($http) {
     };
     
     // Login
-    this.login = function(credentials) {
-        return $http.post(baseUrl + '/login', credentials);
+     this.login = function(credentials) {
+        return $http.post(baseUrl + '/login', credentials)
+            .then(function(response) {
+                // Store additional user data if needed
+                return {
+                    data: {
+                        token: response.data.token,
+                        user: response.data.user
+                    }
+                };
+            });
     };
     
     // Check auth status

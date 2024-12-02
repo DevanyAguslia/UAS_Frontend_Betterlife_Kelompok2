@@ -8,6 +8,8 @@ import { fileURLToPath } from 'url';
 // Import routes
 import pomodoroRouter from './routes/api/pomodoroRoute.js';
 import taskRouter from './routes/api/taskRoute.js';
+import authRouter from './routes/api/authRoute.js';
+import userRouter from './routes/api/userRoute.js';
 import booksRoute from './routes/api/booksRoute.js';
 
 // Mendapatkan dirname untuk modul ES
@@ -29,15 +31,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Menghubungkan rute buku
+// Routes untuk API
+app.use('/api/pomodoro', pomodoroRouter);
+app.use('/api/task', taskRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
 app.use('/api/books', booksRoute);
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Routes untuk API
-app.use('/api/pomodoro', pomodoroRouter);
-app.use('/api/task', taskRouter);
 
 // Rute untuk melayani file index.html
 app.get('/', (req, res) => {
@@ -66,4 +68,3 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-app.use('/api/books', booksRoute);
