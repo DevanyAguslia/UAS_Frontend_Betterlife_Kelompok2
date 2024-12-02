@@ -1,0 +1,50 @@
+.mood-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.mood-title {
+    color: #ffd700;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.mood-form {
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-select {
+    border-color: #444;
+}
+
+.form-select:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+}
+
+.mood-log-item {
+    border-left: 4px solid #ffd700;
+    transition: all 0.3s ease;
+}
+
+.mood-log-item:hover {
+    transform: translateX(5px);
+    border-left-color: #ff9900;
+}
+
+.btn-warning {
+    background-color: #ffd700;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #ffed4a;
+}
+
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.2);
+    border: none;
+    color: #fff;
+}

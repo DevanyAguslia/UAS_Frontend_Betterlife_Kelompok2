@@ -1,0 +1,40 @@
+<div class="container mood-container">
+    <h1 class="mood-title mb-4">Personal Mood Tracker</h1>
+
+    <div class="mood-form bg-dark p-4 rounded">
+        <div class="mb-3">
+            <label class="form-label text-white">How are you feeling today?</label>
+            <select class="form-select bg-dark text-white" ng-model="currentMood.mood">
+                <option value="excited">🤩 Excited</option>
+                <option value="happy">😊 Happy</option>
+                <option value="neutral">😐 Neutral</option>
+                <option value="sad">😢 Sad</option>
+                <option value="angry">😠 Angry</option>
+            </select>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-warning me-2" ng-click="logMood()">Log Mood</button>
+            <button class="btn btn-danger" ng-click="deleteAllLogs()">Delete All Logs</button>
+        </div>
+    </div>
+
+    <div class="mood-logs mt-4">
+        <div ng-if="moods.length === 0" class="alert alert-info">
+            No moods found. Please log your first mood.
+        </div>
+
+        <div ng-repeat="mood in moods | orderBy:'-date'" class="mood-log-item p-3 mb-2 bg-dark rounded">
+            <div class="d-flex justify-content-between align-items-center text-white">
+                <div>
+                    <span ng-if="mood.mood === 'excited'">🤩</span>
+                    <span ng-if="mood.mood === 'happy'">😊</span>
+                    <span ng-if="mood.mood === 'neutral'">😐</span>
+                    <span ng-if="mood.mood === 'sad'">😢</span>
+                    <span ng-if="mood.mood === 'angry'">😠</span>
+                    <span class="ms-2">{{ formatDate(mood.date) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

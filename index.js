@@ -12,6 +12,7 @@ import authRouter from './routes/api/authRoute.js';
 import userRouter from './routes/api/userRoute.js';
 import booksRoute from './routes/api/booksRoute.js';
 import diaryRouter from './routes/api/diaryRoute.js';
+import moodRoute from './routes/api/moodRoute.js';
 
 // Mendapatkan dirname untuk modul ES
 const __filename = fileURLToPath(import.meta.url);
@@ -32,16 +33,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes untuk API
-app.use('/api/pomodoro', pomodoroRouter);
-app.use('/api/task', taskRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/users', userRouter);
+// Menghubungkan rute buku
 app.use('/api/books', booksRoute);
 app.use('/api/diary', diaryRouter);
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Routes untuk API
+app.use('/api/pomodoro', pomodoroRouter);
+app.use('/api/task', taskRouter);
 
 // Rute untuk melayani file index.html
 app.get('/', (req, res) => {

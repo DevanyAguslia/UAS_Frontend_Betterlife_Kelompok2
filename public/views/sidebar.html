@@ -1,6 +1,7 @@
-<div class="sidebar" ng-controller="SidebarController" ng-class="{'sidebar-open': sidebarOpen, 'sidebar-closed': !sidebarOpen}">
+<div class="sidebar" ng-controller="SidebarController"
+    ng-class="{'sidebar-open': sidebarOpen, 'sidebar-closed': !sidebarOpen}">
     <div class="sidebar-container">
-            <!-- Logo Section -->
+        <!-- Logo Section -->
         <div class="d-flex justify-content-between align-items-center mb-4 px-3">
             <a href="#!/home" class="logo text-decoration-none">
                 <h2 id="betterlife" class="text-light m-0">
@@ -14,32 +15,38 @@
 
         <!-- Navigation Links -->
         <nav>
-            <a href="#!/home" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('home')}">
+            <a href="#!/home" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
+                ng-class="{'active': isActive('home')}">
                 <i class="fas fa-home"></i>
                 <span>Homepage</span>
             </a>
 
-            <a href="#!/calendar" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('calendar')}">
-                <i class="fas fa-calendar"></i>
-                <span>To-do List Calendar</span>
+            <a href="#!/mood" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
+                ng-class="{'active': isActive('mood')}">
+                <!-- <i class="fas fa-calendar"></i> -->
+                <span>Mood Tracker</span>
             </a>
 
-            <a href="#!/pomodoro" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('pomodoro')}">
+            <a href="#!/pomodoro" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
+                ng-class="{'active': isActive('pomodoro')}">
                 <i class="fas fa-clock"></i>
                 <span>Pomodoro</span>
             </a>
 
-            <a href="#!/task" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('music')}">
-                <i class="fas fa-pencil-alt"></i>
-                <span>Task Management</span>
+            <a href="#!/music" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
+                ng-class="{'active': isActive('music')}">
+                <i class="fas fa-music"></i>
+                <span>Music</span>
             </a>
 
-            <a href="#!/books" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('books')}">
+            <a href="#!/books" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
+                ng-class="{'active': isActive('books')}">
                 <i class="fas fa-book"></i>
                 <span>Books</span>
             </a>
 
-            <a href="#!/diary" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3" ng-class="{'active': isActive('diary')}">
+            <a href="#!/diary" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
+                ng-class="{'active': isActive('diary')}">
                 <i class="fas fa-journal-whills"></i>
                 <span>Jurnal Diary</span>
             </a>
@@ -52,16 +59,13 @@
                 <span class="ms-2">Login</span>
             </a>
         </div>
-        
+
         <div class="mt-auto px-3" ng-if="isLoggedIn">
             <div class="d-flex align-items-center justify-content-between">
                 <a href="#!/profile" class="nav-link nav-link-sidebar text-light d-flex align-items-center">
                     <div class="profile-circle">
-                        <img ng-src="{{user.profilePicture || '/assets/default-avatar.png'}}" 
-                             alt="Profile" 
-                             class="rounded-circle"
-                             width="40" 
-                             height="40">
+                        <img ng-src="{{user.profilePicture || '/assets/default-avatar.png'}}" alt="Profile"
+                            class="rounded-circle" width="40" height="40">
                     </div>
                     <span class="ms-2">{{user.username}}</span>
                 </a>
