@@ -11,6 +11,7 @@ import taskRouter from './routes/api/taskRoute.js';
 import authRouter from './routes/api/authRoute.js';
 import userRouter from './routes/api/userRoute.js';
 import booksRoute from './routes/api/booksRoute.js';
+import diaryRouter from './routes/api/diaryRoute.js';
 
 // Mendapatkan dirname untuk modul ES
 const __filename = fileURLToPath(import.meta.url);
@@ -37,6 +38,7 @@ app.use('/api/task', taskRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/books', booksRoute);
+app.use('/api/diary', diaryRouter);
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));

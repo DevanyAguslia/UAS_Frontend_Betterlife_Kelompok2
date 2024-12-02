@@ -1,40 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diary | Better Life</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
-    </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/diary.css">
-</head>
-<body class="d-flex flex-column min-vh-100 bg-gradient">
+<div class="container" ng-controller="DiaryController">
+    <div class="header text-center">
+        <h1 class="text-primary">Diary Reflection Journal</h1>
+    </div>
 
-    <!-- Diary Section -->
-    <section id="diary" class="container text-center text-white my-5">
-        <h1 class="fw-bold">Daily Reflection Journal</h1>
-        <p>Write down your thoughts, reflections, and self-evaluation here.</p>
-        <form id="diaryForm" class="my-4">
-            <textarea id="diaryInput" class="form-control mb-3" placeholder="What's on your mind today?"></textarea>
-            <button type="button" class="btn btn-primary" onclick="saveEntry()">Save Entry</button>
-        </form>
-        <div id="diaryEntries" class="mt-4"></div>
-    </section>
+    <!-- Search and Filter -->
+    <div class="search-bar mt-4">
+        <input type="text" ng-model="search" placeholder="Search entries..." class="form-control mb-3" ng-change="fetchEntries()" />
+        <div class="form-group">
+            <label for="filterTag">Search by Tag:</label>
+                <select 
+                    id="filterTag" 
+                    class="form-control" 
+                    ng-model="filterTag" 
+                    ng-change="fetchEntries()">
+                    <option value="">-- Select Tag --</option>
+                    <option ng-repeat="tag in allTags" value="{{tag}}">{{tag}}</option>
+                </select>
+    </div>
 
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <div class="social-icons mb-3">
-            <a href="https://github.com/Nikanzz/Kelompok2_BetterLife_UTS_Frontend" target="_blank">
-                <i class='bx bxl-github'></i>
-            </a>
+    </div>
+
+    <!-- Entry Form -->
+    <div class="entry-form mt-4">
+        <input type="text" ng-model="newTitle" placeholder="Title" class="form-control mb-2" />
+        <textarea ng-model="newContent" placeholder="Write your reflection..." class="form-control mb-2"></textarea>
+        <input type="text" ng-model="newTags" placeholder="Tags (comma separated)" class="form-control mb-2" />
+        <select ng-model="newMood" class="form-control mb-2">
+            <option value="Excited">Excited</option>
+            <option value="Happy">Happy</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Sad">Sad</option>
+            <option value="Angry">Angry</option>
+        </select>
+        <button class="btn btn-primary" ng-click="createEntry()">Save</button>
+    </div>
+
+    <!-- Diary Entries -->
+    <div class="entries mt-5">
+        <div class="entry" ng-repeat="entry in entries">
+            <h3>{{entry.title}}</h3>
+            <p>{{entry.content}}</p>
+            <p>Tags: {{entry.tags.join(', ')}}</p>
+            <p>Mood: {{entry.mood}}</p>
+            <button class="btn btn-info" ng-click="updateEntry(entry)">Edit</button>
+            <button class="btn btn-danger" ng-click="deleteEntry(entry._id)">Delete</button>
         </div>
-        <p>Contact Us: (021) 5671747</p>
-        <p>&copy; 2024 Better Life - All Rights Reserved</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="diary-script.js"></script>
-</body>
-</html>
+    </div>
+</div>
