@@ -8,9 +8,9 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'views/home.html',
             controller: 'HomeController'
         })
-        .when('/calendar', {
-            templateUrl: 'views/calendar.html',
-            controller: 'CalendarController'
+        .when('/mood', {
+            templateUrl: 'views/mood.html',
+            controller: 'MoodController'
         })
         .when('/pomodoro', {
             templateUrl: 'views/pomodoro.html',

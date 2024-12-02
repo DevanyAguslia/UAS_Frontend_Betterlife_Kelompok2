@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import pomodoroRouter from './routes/api/pomodoroRoute.js';
 import taskRouter from './routes/api/taskRoute.js';
 import booksRoute from './routes/api/booksRoute.js';
+import moodRoute from './routes/api/moodRoute.js';
 
 // Mendapatkan dirname untuk modul ES
 const __filename = fileURLToPath(import.meta.url);
@@ -30,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Menghubungkan rute buku
-app.use('/api/books', booksRoute);
+
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,16 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes untuk API
 app.use('/api/pomodoro', pomodoroRouter);
 app.use('/api/task', taskRouter);
-
-// Rute untuk melayani file index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Menangani semua rute lainnya untuk mendukung mode HTML5 History
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.use('/api/mood', moodRoute);
+app.use('/api/books', booksRoute);
 
 // Koneksi ke MongoDB
 mongoose.connect(MONGOURL, {
@@ -66,4 +59,3 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-app.use('/api/books', booksRoute);
