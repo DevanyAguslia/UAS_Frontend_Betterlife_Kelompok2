@@ -36,13 +36,13 @@ app.use(express.urlencoded({ extended: true }));
 // Menghubungkan rute buku
 app.use('/api/books', booksRoute);
 app.use('/api/diary', diaryRouter);
+app.use('/api/pomodoro', pomodoroRouter);
+app.use('/api/task', taskRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Routes untuk API
-app.use('/api/pomodoro', pomodoroRouter);
-app.use('/api/task', taskRouter);
 
 // Rute untuk melayani file index.html
 app.get('/', (req, res) => {
