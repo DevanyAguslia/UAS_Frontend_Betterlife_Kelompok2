@@ -9,7 +9,11 @@ const moodSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    answers: [{
+        question: String,
+        answer: String
+    }]
 }, {
     timestamps: true,
     versionKey: false

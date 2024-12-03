@@ -1,113 +1,132 @@
-app.controller('MoodController', ['$scope', 'MoodService', function ($scope, MoodService) {
-    // Initialize variables
+app.controller('MoodController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+    const API_URL = 'http://localhost:8000/api/mood';
+
+    // Initialize
     $scope.moods = [];
     $scope.currentMood = {
         mood: 'neutral',
-        date: new Date()
+        date: new Date(),
+        answers: []
     };
+    $scope.isLoading = false;
 
     // Get all moods
     $scope.getMoods = function () {
-        console.log('Fetching moods...');
-        MoodService.getMoods()
+        $http.get(API_URL)
             .then(function (response) {
-                console.log('Response:', response);
-                if (response.data && response.data.status === 'success') {
-                    $scope.moods = response.data.data;
-                }
+                console.log('Moods retrieved:', response.data);
+                $scope.moods = response.data.data || [];
             })
             .catch(function (error) {
                 console.error('Error fetching moods:', error);
-                if (error.status === 401) {
-                    // Redirect to login if unauthorized
-                    window.location.href = '#!/login';
-                }
             });
     };
 
-    // Log new mood
-    $scope.logMood = function () {
-        console.log('Logging mood:', $scope.currentMood);
-        if (!$scope.currentMood.mood) return;
+    // Start editing
+    $scope.startEdit = function (mood) {
+        // Make a deep copy of the answers
+        mood.editAnswers = JSON.parse(JSON.stringify(mood.answers));
+        mood.isEditing = true;
+    };
 
-        MoodService.createMood($scope.currentMood)
+    // Cancel editing
+    $scope.cancelEdit = function (mood) {
+        mood.isEditing = false;
+        delete mood.editAnswers;
+    };
+
+    // Save edited answers
+    $scope.saveEdit = function (mood) {
+        console.log('Saving mood:', mood);
+        const updatedData = {
+            mood: mood.mood,
+            answers: mood.editAnswers
+        };
+
+        $http.put(`${API_URL}/${mood._id}`, updatedData)
             .then(function (response) {
-                console.log('Mood logged:', response);
-                if (response.data && response.data.status === 'success') {
+                console.log('Update response:', response);
+                if (response.data.status === 'success') {
+                    mood.answers = mood.editAnswers;
+                    mood.isEditing = false;
+                    delete mood.editAnswers;
+                    alert('Changes saved successfully!');
+                }
+            })
+            .catch(function (error) {
+                console.error('Error updating mood:', error);
+                alert('Error saving changes. Please try again.');
+            });
+    };
+
+    // Create new mood
+    $scope.logMood = function () {
+        if (!$scope.currentMood.mood) {
+            alert('Please select a mood first!');
+            return;
+        }
+
+        const moodData = {
+            mood: $scope.currentMood.mood,
+            date: new Date(),
+            answers: $scope.questions.map((q, index) => ({
+                question: q.text,
+                answer: $scope.currentMood.answers[index]?.answer || ''
+            }))
+        };
+
+        $http.post(API_URL, moodData)
+            .then(function (response) {
+                if (response.data.status === 'success') {
                     $scope.moods.unshift(response.data.data);
                     // Reset form
                     $scope.currentMood = {
                         mood: 'neutral',
-                        date: new Date()
+                        date: new Date(),
+                        answers: []
                     };
-                    // Show success message
                     alert('Mood logged successfully!');
                 }
             })
             .catch(function (error) {
                 console.error('Error logging mood:', error);
-                if (error.status === 401) {
-                    window.location.href = '#!/login';
-                } else {
-                    alert('Error logging mood. Please try again.');
-                }
+                alert('Error logging mood. Please try again.');
             });
     };
 
     // Delete mood
     $scope.deleteMood = function (moodId) {
-        console.log('Deleting mood:', moodId);
-        if (!confirm('Are you sure you want to delete this mood?')) return;
+        if (!confirm('Are you sure you want to delete this mood entry?')) {
+            return;
+        }
 
-        MoodService.deleteMood(moodId)
+        $http.delete(`${API_URL}/${moodId}`)
             .then(function (response) {
-                console.log('Mood deleted:', response);
-                if (response.data && response.data.status === 'success') {
+                if (response.data.status === 'success') {
                     $scope.moods = $scope.moods.filter(m => m._id !== moodId);
                     alert('Mood deleted successfully!');
                 }
             })
             .catch(function (error) {
                 console.error('Error deleting mood:', error);
-                if (error.status === 401) {
-                    window.location.href = '#!/login';
-                } else {
-                    alert('Error deleting mood. Please try again.');
-                }
+                alert('Error deleting mood. Please try again.');
             });
     };
 
-    // Delete all moods
-    $scope.deleteAllLogs = function () {
-        console.log('Deleting all moods...');
-        if (!confirm('Are you sure you want to delete all mood logs? This cannot be undone.')) return;
-
-        MoodService.deleteAllMoods()
-            .then(function (response) {
-                console.log('All moods deleted:', response);
-                if (response.data && response.data.status === 'success') {
-                    $scope.moods = [];
-                    alert('All moods deleted successfully!');
-                }
-            })
-            .catch(function (error) {
-                console.error('Error deleting all moods:', error);
-                if (error.status === 401) {
-                    window.location.href = '#!/login';
-                } else {
-                    alert('Error deleting moods. Please try again.');
-                }
-            });
-    };
-
-    // Format date for display
+    // Format date
     $scope.formatDate = function (date) {
         return new Date(date).toLocaleString();
     };
 
-    // Initialize controller
-    $scope.getMoods();
+    // Questions
+    $scope.questions = [
+        { text: "What's the main reason for your mood today?" },
+        { text: "Did you do anything today that made you feel better?" },
+        { text: "Is there something specific that could improve your mood?" },
+        { text: "Have you taken care of your basic needs today? (sleep, food, exercise)" },
+        { text: "What's one positive thing you can focus on right now?" }
+    ];
 
-    // Debug info
-    console.log('MoodController initialized');
+    // Initialize
+    $scope.getMoods();
 }]);
