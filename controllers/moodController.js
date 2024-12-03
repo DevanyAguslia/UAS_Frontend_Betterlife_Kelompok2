@@ -9,6 +9,7 @@ export const getMoods = async (req, res) => {
             data: moods
         });
     } catch (error) {
+        console.error('Error in getMoods:', error);
         res.status(500).json({
             status: 'error',
             message: error.message
@@ -19,13 +20,20 @@ export const getMoods = async (req, res) => {
 // Create new mood
 export const createMood = async (req, res) => {
     try {
-        const mood = new Mood(req.body);
-        const savedMood = await mood.save();
+        const { mood, answers } = req.body;
+        const newMood = new Mood({
+            mood,
+            answers,
+            date: new Date()
+        });
+
+        const savedMood = await newMood.save();
         res.status(201).json({
             status: 'success',
             data: savedMood
         });
     } catch (error) {
+        console.error('Error in createMood:', error);
         res.status(400).json({
             status: 'error',
             message: error.message
@@ -33,7 +41,7 @@ export const createMood = async (req, res) => {
     }
 };
 
-// Delete mood by ID
+// Delete mood
 export const deleteMood = async (req, res) => {
     try {
         const mood = await Mood.findByIdAndDelete(req.params.id);
@@ -48,6 +56,7 @@ export const deleteMood = async (req, res) => {
             message: 'Mood deleted successfully'
         });
     } catch (error) {
+        console.error('Error in deleteMood:', error);
         res.status(500).json({
             status: 'error',
             message: error.message
@@ -64,6 +73,7 @@ export const deleteAllMoods = async (req, res) => {
             message: 'All moods deleted successfully'
         });
     } catch (error) {
+        console.error('Error in deleteAllMoods:', error);
         res.status(500).json({
             status: 'error',
             message: error.message

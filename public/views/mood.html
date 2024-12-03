@@ -2,38 +2,122 @@
     <h1 class="mood-title mb-4">Personal Mood Tracker</h1>
 
     <div class="mood-form bg-dark p-4 rounded">
-        <div class="mb-3">
-            <label class="form-label text-white">How are you feeling today?</label>
-            <select class="form-select bg-dark text-white" ng-model="currentMood.mood">
-                <option value="excited">🤩 Excited</option>
-                <option value="happy">😊 Happy</option>
-                <option value="neutral">😐 Neutral</option>
-                <option value="sad">😢 Sad</option>
-                <option value="angry">😠 Angry</option>
-            </select>
+        <!-- Mood Selection -->
+        <div class="mb-4">
+            <h3 class="text-white mb-3">How are you feeling today?</h3>
+            <div class="d-flex justify-content-around mb-3">
+                <div class="emoji-button" ng-click="selectMood('excited')"
+                    ng-class="{'active': currentMood.mood === 'excited'}">
+                    <span class="emoji">🤩</span>
+                    <span class="label">Excited</span>
+                </div>
+                <div class="emoji-button" ng-click="selectMood('happy')"
+                    ng-class="{'active': currentMood.mood === 'happy'}">
+                    <span class="emoji">😊</span>
+                    <span class="label">Happy</span>
+                </div>
+                <div class="emoji-button" ng-click="selectMood('neutral')"
+                    ng-class="{'active': currentMood.mood === 'neutral'}">
+                    <span class="emoji">😐</span>
+                    <span class="label">Neutral</span>
+                </div>
+                <div class="emoji-button" ng-click="selectMood('sad')"
+                    ng-class="{'active': currentMood.mood === 'sad'}">
+                    <span class="emoji">😢</span>
+                    <span class="label">Sad</span>
+                </div>
+                <div class="emoji-button" ng-click="selectMood('angry')"
+                    ng-class="{'active': currentMood.mood === 'angry'}">
+                    <span class="emoji">😠</span>
+                    <span class="label">Angry</span>
+                </div>
+            </div>
         </div>
 
-        <div class="text-center">
-            <button class="btn btn-warning me-2" ng-click="logMood()">Log Mood</button>
-            <button class="btn btn-danger" ng-click="deleteAllLogs()">Delete All Logs</button>
+        <!-- Daily Questions -->
+        <div class="daily-questions mb-4">
+            <h3 class="text-white mb-3">Daily Reflection Questions</h3>
+            <form ng-submit="logMood()" class="questions-form">
+                <div class="question mb-3" ng-repeat="question in questions">
+                    <label class="form-label text-white">{{question.text}}</label>
+                    <textarea class="form-control bg-dark text-white" ng-model="currentMood.answers[$index].answer"
+                        rows="2" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-warning me-2" ng-disabled="!currentMood.mood || isLoading">
+                        <span ng-if="!isLoading">Log Mood</span>
+                        <span ng-if="isLoading">
+                            <i class="fas fa-spinner fa-spin"></i> Saving...
+                        </span>
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteAllLogs()">
+                        Delete All Logs
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
+    <!-- Mood History -->
     <div class="mood-logs mt-4">
-        <div ng-if="moods.length === 0" class="alert alert-info">
+        <div ng-if="moods.length === 0" class="alert alert-info text-center">
             No moods found. Please log your first mood.
         </div>
 
-        <div ng-repeat="mood in moods | orderBy:'-date'" class="mood-log-item p-3 mb-2 bg-dark rounded">
-            <div class="d-flex justify-content-between align-items-center text-white">
-                <div>
-                    <span ng-if="mood.mood === 'excited'">🤩</span>
-                    <span ng-if="mood.mood === 'happy'">😊</span>
-                    <span ng-if="mood.mood === 'neutral'">😐</span>
-                    <span ng-if="mood.mood === 'sad'">😢</span>
-                    <span ng-if="mood.mood === 'angry'">😠</span>
-                    <span class="ms-2">{{ formatDate(mood.date) }}</span>
+        <div class="mood-log-item bg-dark p-3 rounded mb-3" ng-repeat="mood in moods | orderBy:'-date'">
+            <!-- Mood Header -->
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="mood-display me-3">
+                        <span class="mood-emoji" ng-switch="mood.mood">
+                            <span ng-switch-when="excited">🤩</span>
+                            <span ng-switch-when="happy">😊</span>
+                            <span ng-switch-when="neutral">😐</span>
+                            <span ng-switch-when="sad">😢</span>
+                            <span ng-switch-when="angry">😠</span>
+                        </span>
+                        <span class="mood-text text-capitalize text-warning ms-2">{{mood.mood}}</span>
+                    </div>
+                    <span class="text-white-50">{{ formatDate(mood.date) }}</span>
                 </div>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-warning me-2" ng-click="startEdit(mood)"
+                        ng-if="!mood.isEditing">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" ng-click="deleteMood(mood._id)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Display Answers (View Mode) -->
+            <div class="answers-section mt-3" ng-if="mood.answers && mood.answers.length && !mood.isEditing">
+                <hr class="border-secondary">
+                <div class="answer-item mb-2" ng-repeat="answer in mood.answers">
+                    <p class="text-white-50 mb-1"><small>{{answer.question}}</small></p>
+                    <p class="text-white mb-0">{{answer.answer}}</p>
+                </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <div class="answers-section mt-3" ng-if="mood.isEditing">
+                <hr class="border-secondary">
+                <form ng-submit="saveEdit(mood)" class="edit-form">
+                    <div class="mb-3" ng-repeat="answer in mood.editAnswers">
+                        <label class="text-white-50 mb-1"><small>{{answer.question}}</small></label>
+                        <textarea class="form-control bg-dark text-white" ng-model="answer.answer" rows="2"></textarea>
+                    </div>
+                    <div class="text-end mt-3">
+                        <button type="button" class="btn btn-sm btn-secondary me-2" ng-click="cancelEdit(mood)">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-sm btn-warning">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
