@@ -2,13 +2,19 @@ app.controller('MoodController', ['$scope', '$http', '$timeout', function ($scop
     const API_URL = 'http://localhost:8000/api/mood';
 
     // Initialize
-    $scope.moods = [];
+    $scope.moods = ['excited', 'happy', 'neutral', 'sad', 'angry'];
+
+    // Set mood default
     $scope.currentMood = {
-        mood: 'neutral',
+        mood: 'neutral', // Nilai awal mood
         date: new Date(),
         answers: []
     };
-    $scope.isLoading = false;
+
+    // Fungsi untuk memilih mood
+    $scope.selectMood = function (mood) {
+        $scope.currentMood.mood = mood; // Update mood yang dipilih
+    };
 
     // Get all moods
     $scope.getMoods = function () {

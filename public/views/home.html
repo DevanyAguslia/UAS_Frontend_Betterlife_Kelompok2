@@ -18,7 +18,7 @@
 
         <a href="#!/mood" class="nav-link nav-link-sidebar text-light d-flex align-items-center mb-3"
             ng-class="{'active': isActive('mood')}">
-            <!-- <i class="fas fa-calendar"></i> -->
+            <i class="fas fa-smile"></i>
             <span>Mood Tracker</span>
         </a>
 
@@ -54,16 +54,13 @@
             <span class="ms-2">Login</span>
         </a>
     </div>
-    
+
     <div class="mt-auto px-3" ng-if="isLoggedIn">
         <div class="d-flex align-items-center justify-content-between">
             <a href="#!/profile" class="nav-link nav-link-sidebar text-light d-flex align-items-center">
                 <div class="profile-circle">
-                    <img ng-src="{{user.profilePicture || '/assets/default-avatar.png'}}" 
-                         alt="Profile" 
-                         class="rounded-circle"
-                         width="40" 
-                         height="40">
+                    <img ng-src="{{user.profilePicture || '/assets/default-avatar.png'}}" alt="Profile"
+                        class="rounded-circle" width="40" height="40">
                 </div>
                 <span class="ms-2">{{user.username}}</span>
             </a>

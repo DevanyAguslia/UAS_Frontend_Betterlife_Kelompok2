@@ -1,3 +1,4 @@
+// models/mood.js
 import mongoose from 'mongoose';
 
 const moodSchema = new mongoose.Schema({
@@ -6,17 +7,20 @@ const moodSchema = new mongoose.Schema({
         required: true,
         enum: ['excited', 'happy', 'neutral', 'sad', 'angry']
     },
+    answers: [{
+        question: String,
+        answer: String
+    }],
     date: {
         type: Date,
         default: Date.now
     },
-    answers: [{
-        question: String,
-        answer: String
-    }]
-}, {
-    timestamps: true,
-    versionKey: false
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
-export default mongoose.model('Mood', moodSchema);
+const Mood = mongoose.model('Mood', moodSchema);
+
+export default Mood;
