@@ -80,3 +80,39 @@ export const deleteAllMoods = async (req, res) => {
         });
     }
 };
+
+// Update mood
+export const updateMood = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { mood, answers } = req.body;
+
+        const updatedMood = await Mood.findByIdAndUpdate(
+            id,
+            {
+                mood,
+                answers,
+                updatedAt: new Date()
+            },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedMood) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'Mood not found'
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: updatedMood
+        });
+    } catch (error) {
+        console.error('Error in updateMood:', error);
+        res.status(500).json({
+            status: 'error',
+            message: error.message
+        });
+    }
+};

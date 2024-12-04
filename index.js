@@ -40,6 +40,7 @@ app.use('/api/pomodoro', pomodoroRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
+app.use('/api/mood', moodRoute);
 
 // Melayani file statis dari direktori public
 app.use(express.static(path.join(__dirname, 'public')));
