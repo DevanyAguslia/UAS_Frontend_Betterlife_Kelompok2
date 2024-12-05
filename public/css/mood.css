@@ -1,9 +1,11 @@
+/* Main container for mood tracking interface */
 .mood-container {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
 }
 
+/* Main title styling */
 .mood-title {
     color: #4a0162;
     text-align: center;
@@ -15,7 +17,7 @@
     text-shadow: 2px 2px 4px rgba(42, 42, 42, 0.3);
 }
 
-/* Emoji Buttons */
+/* Emoji button base styles */
 .emoji-button {
     cursor: pointer;
     text-align: center;
@@ -24,35 +26,87 @@
     transition: all 0.3s ease;
 }
 
+/* Emoji size and animation settings */
 .emoji-button .emoji {
     font-size: 2rem;
     display: block;
     margin-bottom: 5px;
     transform-origin: center;
     transition: transform 0.3s ease;
+    animation: float 3s ease-in-out infinite;
 }
 
+/* Emoji label text */
 .emoji-button .label {
     color: #fff;
     font-size: 0.8rem;
     opacity: 0.8;
 }
 
+/* Hover effect for emoji */
 .emoji-button:hover .emoji {
     transform: scale(1.2);
+    animation: bounce 0.5s ease infinite;
 }
 
+/* Active state for selected emoji */
 .emoji-button.active {
     background: rgba(0, 123, 255, 0.2);
     border: 2px solid #007bff;
 }
 
-/* Form Controls */
+.emoji-button.active .emoji {
+    animation: pulse 1s ease infinite;
+}
+
+/* Emoji animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: scale(1.2) translateY(0);
+    }
+
+    50% {
+        transform: scale(1.2) translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Form input base styles */
 .form-control {
     border: 1px solid #ffffff;
     transition: all 0.3s ease;
 }
 
+/* Form input focus state */
 .form-control:focus {
     background-color: #ffffff !important;
     border-color: #007bff;
@@ -60,52 +114,52 @@
     color: white !important;
 }
 
-/* Buttons */
+/* Submit button styling */
 .btn-warning {
     background-color: #007bff;
-    /* Changed from #ffd700 to blue */
     border: none;
     color: #fff;
-    /* Changed text color to white for better contrast */
     font-weight: bold;
     transition: all 0.3s ease;
 }
 
+/* Submit button hover effect */
 .btn-warning:hover {
     background-color: #0056b3;
-    /* Darker blue on hover */
     transform: translateY(-2px);
 }
 
+/* Submit button disabled state */
 .btn-warning:disabled {
     background-color: #004085;
-    /* Darker blue when disabled */
     transform: none;
 }
 
-/* Mood History */
+/* History item container */
 .mood-log-item {
     border-left: 4px solid #007bff;
-    /* Changed from #ffd700 to blue */
     transition: all 0.3s ease;
     animation: slideIn 0.5s ease;
 }
 
+/* History item hover effect */
 .mood-log-item:hover {
     transform: translateX(5px);
 }
 
+/* History emoji size */
 .mood-emoji {
     font-size: 1.5rem;
 }
 
+/* History answers section */
 .mood-answers {
     border-top: 1px solid #444;
     padding-top: 1rem;
     margin-top: 1rem;
 }
 
-/* Animations */
+/* Slide-in animation definition */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -118,38 +172,37 @@
     }
 }
 
+/* Textarea specific styles */
 .questions-form textarea {
     background-color: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid #444;
     color: white;
 }
 
+/* Dark theme for form inputs */
 .questions-form textarea,
 .form-control {
     background-color: rgba(40, 44, 52, 0.9) !important;
-    /* Keeping dark background */
     border: 1px solid #444;
     color: #ffffff !important;
-    /* Changed to white text */
 }
 
+/* Placeholder text styling */
 .questions-form textarea::placeholder,
 .form-control::placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    /* Light gray for placeholder */
 }
 
+/* Focus states for dark inputs */
 .questions-form textarea:focus,
 .form-control:focus {
     background-color: rgba(40, 44, 52, 0.95) !important;
     border-color: #007bff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     color: #ffffff !important;
-    /* Keep white text when focused */
 }
 
-
-/* Loading Spinner */
+/* Loading spinner animation */
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -160,6 +213,7 @@
     }
 }
 
+/* Loading spinner element */
 .fa-spinner {
     animation: spin 1s linear infinite;
 }

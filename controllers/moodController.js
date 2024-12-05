@@ -1,6 +1,8 @@
 import Mood from '../models/mood.js';
 
 // Get all moods
+// Returns sorted list of moods with newest first
+// Response: 200 success with moods array, 500 for server error
 export const getMoods = async (req, res) => {
     try {
         const moods = await Mood.find().sort({ date: -1 });
@@ -17,7 +19,10 @@ export const getMoods = async (req, res) => {
     }
 };
 
-// Create new mood
+// Create new mood entry
+// Expects mood and answers in request body
+// Sets current date automatically
+// Response: 201 with new mood, 400 for validation errors
 export const createMood = async (req, res) => {
     try {
         const { mood, answers } = req.body;
@@ -41,7 +46,9 @@ export const createMood = async (req, res) => {
     }
 };
 
-// Delete mood
+// Delete specific mood by ID
+// Validates mood existence before deletion
+// Response: 200 for success, 404 if not found, 500 for server error
 export const deleteMood = async (req, res) => {
     try {
         const mood = await Mood.findByIdAndDelete(req.params.id);
@@ -64,7 +71,9 @@ export const deleteMood = async (req, res) => {
     }
 };
 
-// Delete all moods
+// Delete all mood records
+// Removes all documents from moods collection
+// Response: 200 for success, 500 for server error
 export const deleteAllMoods = async (req, res) => {
     try {
         await Mood.deleteMany({});
@@ -81,7 +90,10 @@ export const deleteAllMoods = async (req, res) => {
     }
 };
 
-// Update mood
+// Update existing mood
+// Expects mood ID in URL params, mood and answers in body
+// Updates timestamp automatically
+// Response: 200 with updated mood, 404 if not found, 500 for server error
 export const updateMood = async (req, res) => {
     try {
         const { id } = req.params;
