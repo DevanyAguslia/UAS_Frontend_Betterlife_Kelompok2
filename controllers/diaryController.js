@@ -19,12 +19,20 @@ export const getEntries = async (req, res) => {
         const { search, tag } = req.query;
         const filter = {};
 
-        if (search) filter.content = new RegExp(search, 'i');
-        if (tag) filter.tags = tag;
+        if (search) {
+            filter.$or = [
+                { title: new RegExp(search, 'i') }, // Pencarian di title
+                { content: new RegExp(search, 'i') } // Pencarian di content
+            ];
+        }
+        if (tag) {
+            filter.tags = tag; // Filter untuk tag
+        }
 
         const entries = await Diary.find(filter).sort({ createdAt: -1 });
         res.status(200).json(entries);
     } catch (error) {
+        console.error('Error fetching entries:', error);
         res.status(500).json({ message: 'Failed to fetch entries', error });
     }
 };

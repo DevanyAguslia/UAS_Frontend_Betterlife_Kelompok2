@@ -6,31 +6,49 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
 
     // Fungsi untuk mengambil entri diary dari server
     $scope.fetchEntries = function() {
-        DiaryService.getEntries({ search: $scope.search, tag: $scope.filterTag }).then(response => {
-            $scope.entries = response.data;
+    const params = {
+        search: $scope.search || '', // Mengirimkan pencarian
+        tag: $scope.filterTag || '' // Mengirimkan filter tag
+    };
 
-            // Update daftar tag unik berdasarkan entri yang diambil
-            $scope.updateAllTags();
-        });
+    DiaryService.getEntries(params).then(response => {
+        $scope.entries = response.data;
+
+        // Update daftar tag
+        $scope.updateAllTags();
+    }).catch(err => {
+        console.error("Failed to fetch entries:", err);
+    });
+};
+
+    $scope.createEntry = function() {
+    const newEntry = {
+        title: $scope.newTitle,
+        content: $scope.newContent,
+        tags: $scope.newTags ? $scope.newTags.split(',').map(tag => tag.trim()) : [], // Trim tag
+        mood: $scope.newMood
     };
 
     // Fungsi untuk menambahkan entri baru
-    $scope.createEntry = function() {
-        const newEntry = {
-            title: $scope.newTitle,
-            content: $scope.newContent,
-            tags: $scope.newTags ? $scope.newTags.split(',').map(tag => tag.trim()) : [], // Trim tag
-            mood: $scope.newMood
-        };
+    DiaryService.createEntry(newEntry).then(() => {
+        // Reset form setelah berhasil
+        $scope.newTitle = '';
+        $scope.newContent = '';
+        $scope.newTags = '';
+        $scope.newMood = '';
 
-        DiaryService.createEntry(newEntry).then(() => {
-            $scope.fetchEntries(); // Ambil entri terbaru setelah menambah
-            $scope.newTitle = '';
-            $scope.newContent = '';
-            $scope.newTags = '';
-            $scope.newMood = '';
-        });
-    };
+        // Ambil entri terbaru setelah berhasil menambahkan
+        $scope.fetchEntries();
+
+        // Tampilkan modal sukses
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    }).catch(err => {
+        // Tangani error (opsional)
+        console.error("Failed to create entry:", err);
+        alert("Failed to create entry. Please make sure to fill in all fields.");
+    });
+};
 
     // Fungsi untuk memperbarui entri diary
     $scope.updateEntry = function(entry) {
