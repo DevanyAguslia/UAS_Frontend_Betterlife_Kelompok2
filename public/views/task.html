@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management</title>
     <link href="css/task.css" rel="stylesheet">
 </head>
-
 <body>
     <!-- Task Management HTML -->
     <div class="task-container">
@@ -46,8 +39,8 @@
                 ng-repeat="task in filteredTasks = (tasks | filter:filterByStatus | filter:searchFilter | orderBy:'title':sortReverse)">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h5 class="text-light">{{task.title}}</h5>
-                        <p class="text-muted">{{task.description}}</p>
+                        <h5 class="text-light"><strong style="color: rgb(15, 57, 141);">{{task.title}}</strong></h5>
+                        <p class="text-light">{{task.description}}</p>
                     </div>
                     <div class="d-flex align-items-center">
                         <span class="badge me-3" ng-class="getStatusClass(task.status)">{{task.status}}</span>
@@ -123,5 +116,3 @@
         </div>
     </div>
 </body>
-
-</html>
