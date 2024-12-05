@@ -1,28 +1,41 @@
-<div class="container py-5" ng-app="booksApp" ng-controller="BooksController">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/books.css" rel="stylesheet">
+</head>
+
+<div ng-app="booksApp" ng-controller="BooksController">
     <h1 class="text-center text-white mb-4">Books Collection</h1>
     <div class="d-flex justify-content-center mb-4">
-        <input type="text" class="form-control w-50 border border-info shadow" placeholder="Search books..." ng-model="searchQuery">
+        <input type="text" class="form-control w-50 border border-info shadow" 
+               placeholder="Search books..." 
+               ng-model="searchQuery">
     </div>
 
     <!-- Daftar Buku -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" ng-repeat="book in books | filter:searchQuery">
+        <!-- Buku dari database dan preset -->
+        <div class="col" ng-repeat="book in books | filter:{title:searchQuery}">
             <div class="card border-info h-100">
-                <img ng-src="{{book.image}}" class="card-img-top" alt="Book Cover">
+                <img ng-src="{{book.image}}" class="card-img-top" alt="{{book.title}} Cover">
                 <div class="card-body bg-dark text-light">
                     <h5 class="card-title text-info">{{book.title}}</h5>
-                    <p class="card-text text-muted">{{book.summary}}</p>
+                    <p class="card-text text">{{book.summary}}</p>
                     <a ng-href="{{book.link}}" target="_blank" class="btn custom-btn mt-2">Read More</a>
-                    <button class="btn btn-danger mt-2" ng-click="deleteBook(book._id)">Delete</button>
-                    <button ng-if="book.readStatus" class="btn btn-success mt-2">Read</button>
-                    <button ng-if="!book.readStatus" class="btn btn-warning mt-2" ng-click="markAsRead(book._id)">Mark as Read</button>
+                    <!-- Tombol delete hanya muncul untuk buku yang ditambahkan user (memiliki _id) -->
+                    <button ng-if="book._id" class="btn btn-danger mt-2" ng-click="deleteBook(book._id)">Delete</button>
+                    <button ng-if="book._id && book.readStatus" class="btn btn-success mt-2">Read</button>
+                    <button ng-if="book._id && !book.readStatus" class="btn btn-warning mt-2" ng-click="markAsRead(book._id)">Mark as Read</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Form untuk menambahkan buku -->
-    <div class="mt-5">
+    <div class="mt-5 form-books">
         <h3 class="text-center text-white mb-4">Add a New Book</h3>
         <form ng-submit="addBook()">
             <div class="mb-3">
