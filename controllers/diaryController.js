@@ -3,6 +3,7 @@ import Diary from '../models/Diary.js';
 export const createEntry = async (req, res) => {
     try {
         const { title, content, tags, mood } = req.body;
+        const jakartaTime = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
         const formattedDate = jakartaTime.toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',

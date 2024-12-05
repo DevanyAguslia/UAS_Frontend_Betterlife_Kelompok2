@@ -16,9 +16,6 @@ const diarySchema = new mongoose.Schema({
         enum: ['Happy', 'Excited', 'Neutral', 'Sad', 'Angry'], // Mood yang dapat dipilih
         required: true 
     },
-    timestamp: { 
-        type: String, // Format waktu (WIB)
-    },
     formattedDate: { 
         type: String, // Format tanggal (WIB)
     },
