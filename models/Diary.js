@@ -1,11 +1,32 @@
 import mongoose from 'mongoose';
 
+// Definisikan schema untuk entri Diary
 const diarySchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    tags: [String],
-    mood: { type: String, enum: ['Happy','Excited', 'Neutral', 'Sad', 'Angry'], required: true },
-    createdAt: { type: Date, default: Date.now }
+    title: { 
+        type: String, 
+        required: true 
+    },
+    content: { 
+        type: String, 
+        required: true 
+    },
+    tags: [String], // Array untuk menyimpan tags
+    mood: { 
+        type: String, 
+        enum: ['Happy', 'Excited', 'Neutral', 'Sad', 'Angry'], // Mood yang dapat dipilih
+        required: true 
+    },
+    timestamp: { 
+        type: String, // Format waktu (WIB)
+    },
+    formattedDate: { 
+        type: String, // Format tanggal (WIB)
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    }
 });
 
+// Membuat model berdasarkan schema yang telah didefinisikan
 export default mongoose.model('Diary', diarySchema);

@@ -1,3 +1,7 @@
+<head>
+    <link href="css/diary.css" rel="stylesheet">
+</head>
+
 <div class="container diary" ng-controller="DiaryController">
     <div class="header text-center">
         <h1 class="text-primary">Diary Reflection Journal</h1>
@@ -5,70 +9,82 @@
 
     <!-- Search and Filter -->
     <div class="search-bar mt-4">
+        <label for="search" class="form-label">Search Diary Entries:</label>
         <input 
+            id="search"
             type="text" 
             ng-model="search" 
             placeholder="Search by title or reflection content..." 
             class="form-control mb-3" 
             ng-change="fetchEntries()" />
             
-        <div class="form-group">
-            <label for="filterTag">Filter by Tag:</label>
-            <select 
-                id="filterTag" 
-                class="form-control" 
-                ng-model="filterTag" 
-                ng-change="fetchEntries()">
-                <option value="">-- Select Tag --</option>
-                <option ng-repeat="tag in allTags" value="{{tag}}">{{tag}}</option>
-            </select>
-        </div>
+        <label for="filterTag" class="form-label">Filter by Tag:</label>
+        <select 
+            id="filterTag" 
+            class="form-control mb-3" 
+            ng-model="filterTag" 
+            ng-change="fetchEntries()">
+            <option value="">-- Select Tag --</option>
+            <option ng-repeat="tag in allTags" value="{{tag}}">{{tag}}</option>
+        </select>
     </div>
-
 
     <!-- Entry Form -->
     <div class="entry-form mt-4">
-        <input type="text" ng-model="newTitle" placeholder="Title" class="form-control mb-2" />
-        <textarea ng-model="newContent" placeholder="Write your reflection..." class="form-control mb-2"></textarea>
-        <input type="text" ng-model="newTags" placeholder="Tags (comma separated)" class="form-control mb-2" />
-        <select ng-model="newMood" class="form-control mb-2">
+        <h3 class="mb-3">Add New Diary Entry</h3>
+
+        <label for="newTitle" class="form-label">Title:</label>
+        <input id="newTitle" type="text" ng-model="newTitle" placeholder="Title" class="form-control mb-3" />
+
+        <label for="newContent" class="form-label">Reflection:</label>
+        <textarea id="newContent" ng-model="newContent" placeholder="Write your reflection..." class="form-control mb-3"></textarea>
+
+        <label for="newTags" class="form-label">Tags:</label>
+        <input id="newTags" type="text" ng-model="newTags" placeholder="Tags (comma separated)" class="form-control mb-3" />
+
+        <label for="newMood" class="form-label">Your Mood:</label>
+        <select id="newMood" ng-model="newMood" class="form-control mb-3">
+            <option value="">-- Select Mood --</option>
             <option value="Excited">Excited</option>
             <option value="Happy">Happy</option>
             <option value="Neutral">Neutral</option>
             <option value="Sad">Sad</option>
             <option value="Angry">Angry</option>
         </select>
+
         <button class="btn btn-primary" ng-click="createEntry()">Save</button>
     </div>
 
     <!-- Diary Entries -->
     <div class="entries mt-5">
-        <div class="entry" ng-repeat="entry in entries">
-            <h3>{{entry.title}}</h3>
+        <h3>All Diary Entries</h3>
+        <div class="entry mb-4" ng-repeat="entry in entries">
+            <h4 class="text-secondary">{{entry.title}}</h4>
             <p>{{entry.content}}</p>
-            <p>Tags: {{entry.tags.join(', ')}}</p>
-            <p>Mood: {{entry.mood}}</p>
-            <button class="btn btn-info" ng-click="updateEntry(entry)">Edit</button>
+            <p><strong>Tags:</strong> {{ entry.tags.join(', ') }}</p>
+            <p><strong>Mood:</strong> {{ entry.mood }}</p>
+            <p><strong>Date:</strong> {{ entry.formattedDate }}</p> <!-- Tanggal -->
             <button class="btn btn-danger" ng-click="deleteEntry(entry._id)">Delete</button>
         </div>
     </div>
-
-    <!-- Success Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Success</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Diary entry created successfully!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
 </div>
 
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Diary entry created successfully!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
