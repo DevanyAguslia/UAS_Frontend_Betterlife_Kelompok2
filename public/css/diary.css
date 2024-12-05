@@ -4,28 +4,28 @@ body {
     color: #2E4053;
 }
 
-.container {
+.diary .container {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.header {
+.diary .header {
     margin: 20px 0;
 }
 
-.entry-form, .entries {
+.diary .entry-form, .diary .entries {
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.entry {
+.diary .entry {
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
-.entry h3 {
+.diary .entry h3 {
     color: #3498DB;
 }
