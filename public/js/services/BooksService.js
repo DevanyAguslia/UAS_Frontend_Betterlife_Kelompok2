@@ -1,7 +1,7 @@
 app.service('BooksService', function($http) {
     const apiUrl = 'http://localhost:8000/api/books';
 
-    // Ambil semua buku
+    // Fetch all books from the API
     this.getBooks = function() {
         return $http.get(apiUrl)
             .then(response => {
@@ -14,7 +14,7 @@ app.service('BooksService', function($http) {
             });
     };
 
-    // Tambah buku baru
+    // Add a new book to the API
     this.addBook = function(newBook) {
         console.log('Sending new book data:', newBook);
         return $http.post(apiUrl, newBook)
@@ -28,7 +28,7 @@ app.service('BooksService', function($http) {
             });
     };
 
-    // Hapus buku
+    // Delete a book
     this.deleteBook = function(bookId) {
         return $http.delete(`${apiUrl}/${bookId}`)
             .then(response => {
@@ -41,7 +41,7 @@ app.service('BooksService', function($http) {
             });
     };
 
-    // Tandai buku sebagai sudah dibaca
+    // Mark a book as read
     this.markAsRead = function(bookId) {
         return $http.put(`${apiUrl}/${bookId}`, { readStatus: true })
             .then(response => {

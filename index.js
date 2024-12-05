@@ -14,17 +14,17 @@ import booksRoute from './routes/api/booksRoute.js';
 import diaryRouter from './routes/api/diaryRoute.js';
 import moodRoute from './routes/api/moodRoute.js';
 
-// Mendapatkan dirname untuk modul ES
+// Get the directory name for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Menggunakan dotenv untuk konfigurasi environment variables
+// Load environment variables using dotenv
 dotenv.config();
 
-// Inisialisasi express
+// Initialize the Express application
 const app = express();
 
-// Mendapatkan PORT dan MONGO_URL dari environment variables
+// Retrieve the port and MongoDB URL from environment variables
 const PORT = process.env.PORT || 8000;
 const MONGOURL = process.env.MONGO_URL || 'mongodb://localhost:27017/betterlife_db';
 
@@ -33,7 +33,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Menghubungkan rute buku
+// Register routes for different API paths
 app.use('/api/books', booksRoute);
 app.use('/api/diary', diaryRouter);
 app.use('/api/pomodoro', pomodoroRouter);
@@ -42,20 +42,20 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/mood', moodRoute);
 
-// Melayani file statis dari direktori public
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rute untuk melayani file index.html
+// Route to serve the index.html file when accessing the root URL
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Menangani semua rute lainnya untuk mendukung mode HTML5 History
+// Catch all route to support HTML5 History mode for single page applications
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Koneksi ke MongoDB
+// Connection to MongoDB
 mongoose.connect(MONGOURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -67,7 +67,7 @@ mongoose.connect(MONGOURL, {
     });
 }).catch((error) => console.log("Error connecting to database:", error));
 
-// Middleware untuk menangani error
+// Middleware for handling errors
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');

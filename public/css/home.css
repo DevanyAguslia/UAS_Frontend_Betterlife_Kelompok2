@@ -1,3 +1,4 @@
+/* Sidebar styling for the homepage */
 .sidebar-homepage {
     height: 90vh;
     width: 250px;
@@ -14,6 +15,7 @@
     z-index: 9999;
 }
 
+/* Hero section styling */
 .hero {
     padding: 40px;
     background: rgba(255, 255, 255, 0.1);
@@ -23,12 +25,14 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Hero content container */
 .hero-content {
     max-width: 1200px;
     margin: 0 auto;
     background: transparent;
 }
 
+/* Hero title styling */
 .hero h1 {
     font-size: 6rem;
     font-weight: 900;
@@ -37,24 +41,26 @@
     animation: infinite-growing 2.5s infinite;
 }
 
+/* Hero image styling */
 .hero-img img {
     animation: infinite-moving 3s ease-in-out infinite;
 }
 
-/* Animations */
+/* Keyframe animation for hero text growing effect */
 @keyframes infinite-growing {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
 
+/* Keyframe animation for hero image moving effect */
 @keyframes infinite-moving {
     0% { transform: translateY(0); }
     50% { transform: translateY(-3%); }
     100% { transform: translateY(0); }
 }
 
-/* Footer */
+/* Footer styling */
 footer {
     background-color: #2E4053;
     color: #F4F6F7;
@@ -64,22 +70,26 @@ footer {
     bottom: 0 !important;
 }
 
+/* Social media icons styling */
 .social-icons a {
     color: white;
     font-size: 30px;
     transition: color 0.3s;
 }
 
+/* Social media icons hover effect */
 .social-icons a:hover {
     color: skyblue;
 }
 
-/* Responsive */
+/* Responsive styling for smaller screens */
 @media (max-width: 768px) {
+    /* Hero text size adjustment for small screens */
     .hero h1 {
         font-size: 3rem;
     }
     
+    /* Hero section padding adjustment for small screens */
     .hero {
         padding: 20px;
     }

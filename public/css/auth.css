@@ -1,10 +1,10 @@
-/* Styling untuk container utama */
+/* Main container styling */
 .auth .container {
     max-width: 100%;
     padding: 0;
 }
 
-/* Row yang menjaga konten di tengah layar */
+/* Row to keep the content centered on the screen */
 .auth .row.justify-content-center {
     min-height: 100vh;
     display: flex;
@@ -12,7 +12,7 @@
     justify-content: center;
 }
 
-/* Card Design */
+/* Card design for login/signup forms */
 .auth .card {
     border-radius: 15px;
     overflow: hidden;
@@ -20,11 +20,13 @@
     background: #fff;
 }
 
+/* Padding and relative positioning for card body */
 .auth .card-body {
     padding: 2.5rem;
     position: relative;
 }
 
+/* Card header (the title) styling */
 .auth .card h2 {
     color: #343a40;
     font-size: 2rem;
@@ -33,7 +35,7 @@
     margin-bottom: 30px;
 }
 
-/* Tombol Kembali */
+/* Back button */
 .auth .btn-back {
     position: absolute;
     top: 10px;
@@ -44,6 +46,7 @@
     transition: color 0.3s ease;
 }
 
+/* Hover effect for back button */
 .auth .btn-back:hover {
     color: #0056b3;
 }
@@ -65,6 +68,7 @@
     transition: all 0.3s ease;
 }
 
+/* Focus state for input fields */
 .auth input.form-control:focus {
     border-color: #007bff;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
@@ -89,11 +93,13 @@
     transition: all 0.3s ease;
 }
 
+/* Button hover effect */
 .auth button[type="submit"]:hover {
     background-color: #0056b3;
     box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.2);
 }
 
+/* Disabled button state */
 .auth button[type="submit"]:disabled {
     background-color: #d6e0f0;
     cursor: not-allowed;
@@ -105,33 +111,35 @@
     color: #6c757d;
 }
 
+/* Make the checkbox a bit bigger */
 .auth .form-check-input {
     transform: scale(1.2);
 }
 
-/* Styling untuk teks link */
+/* Link styling */
 .auth a.text-decoration-none {
     color: #007bff;
     transition: color 0.3s ease;
 }
 
+/* Link hover effect */
 .auth a.text-decoration-none:hover {
     color: #0056b3;
 }
 
-/* Styling untuk bagian footer */
+/* Footer section styling */
 .auth .text-center p {
     font-size: 0.9rem;
     color: #6c757d;
 }
 
-/* Animasi dan Hover Effects */
+/* Animations and hover effects for better interaction */
 .auth input.form-control:focus,
 button[type="submit"]:hover {
     transform: translateY(-3px);
 }
 
-/* Responsiveness - Menjaga desain tetap baik di perangkat mobile */
+/* Media query for mobile responsiveness */
 @media (max-width: 767px) {
     .auth .card-body {
         padding: 1.5rem;

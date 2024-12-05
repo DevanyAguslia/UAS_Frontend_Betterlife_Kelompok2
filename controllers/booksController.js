@@ -1,6 +1,6 @@
 import Book from '../models/Books.js';
 
-// Mendapatkan semua buku
+// Get all the books
 export const getAllBooks = async (req, res) => {
     try {
         const books = await Book.find();
@@ -10,7 +10,7 @@ export const getAllBooks = async (req, res) => {
     }
 };
 
-// Menambahkan buku baru
+// Create new books
 export const createBook = async (req, res) => {
     const { title, summary, link, image } = req.body;
     const newBook = new Book({
@@ -28,7 +28,7 @@ export const createBook = async (req, res) => {
     }
 };
 
-// Menghapus buku
+// Delete books
 export const deleteBook = async (req, res) => {
     try {
         const deletedBook = await Book.findByIdAndDelete(req.params.id);
@@ -38,7 +38,7 @@ export const deleteBook = async (req, res) => {
     }
 };
 
-// Menandai buku sudah dibaca
+// Mark a book as read
 export const markAsRead = async (req, res) => {
     try {
         const updatedBook = await Book.findByIdAndUpdate(req.params.id, { readStatus: req.body.readStatus }, { new: true });

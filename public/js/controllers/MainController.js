@@ -7,14 +7,17 @@ app.controller('MainController', function($scope, $location, $timeout) {
         $scope.loading = false;
     }, 1000);
 
+    // Check if current page is the login page
     $scope.isLoginPage = function() {
         return $location.path() === '/login';
     };
 
+    // Check if current page is the register page
     $scope.isRegisterPage = function() {
         return $location.path() === '/register';
     };
-
+    
+    // Check if current page is the home page
     $scope.isHomePage = function() {
         console.log('isHomePage called, path:', $location.path());
         return $location.path() === '/home';

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+
 const taskSchema = new mongoose.Schema({
     // Task title - required field with custom error message
     title: {

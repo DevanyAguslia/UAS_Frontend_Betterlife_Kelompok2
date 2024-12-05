@@ -1,21 +1,25 @@
+/* Body styling */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #F4F6F7;
     color: #2E4053;
 }
 
-.diary .container {
+/* Main container for the diary */
+.diary .container { 
     max-width: 800px;
     margin: 20px auto;
 }
 
-.diary .header {
+/* Header styling */
+.diary .header { 
     margin: 20px 0;
 }
 
-.diary .entry-form,
-.diary .entries,
-.diary .search-bar {
+/* Styling for entry forms, entries, and search bar */
+.diary .entry-form, 
+.diary .entries, 
+.diary .search-bar { 
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -23,28 +27,33 @@ body {
     margin-bottom: 20px;
 }
 
-.diary .entry {
+/* Individual diary entry styling */
+.diary .entry { 
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
-.diary .entry h4 {
+/* Styling for entry titles */
+.diary .entry h4 { 
     color: #3498DB;
     font-weight: bold;
 }
 
-.diary .btn {
+/* Button styling */
+.diary .btn { 
     margin-top: 10px;
 }
 
-.diary label {
+/* Label styling for form inputs */
+.diary label { 
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
 }
 
-.diary .form-control {
+/* Styling for input and text areas */
+.diary .form-control { 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;

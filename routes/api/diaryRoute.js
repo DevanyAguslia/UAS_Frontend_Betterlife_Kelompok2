@@ -8,10 +8,16 @@ import {
 
 const router = express.Router();
 
-// Tambahkan endpoint untuk Diary
-router.post('/', createEntry);       // Tambah entri baru
-router.get('/', getEntries);         // Ambil semua entri (dengan pencarian/filter)
-router.put('/:id', updateEntry);     // Perbarui entri berdasarkan ID
-router.delete('/:id', deleteEntry);  // Hapus entri berdasarkan ID
+// Define the POST route for creating a new diary entry
+router.post('/', createEntry);  
+
+// Define the GET route for retrieving all diary entries
+router.get('/', getEntries);     
+
+// Define the PUT route for updating a specific diary entry by its ID
+router.put('/:id', updateEntry);    
+
+// Define the DELETE route for deleting a specific diary entry by its ID
+router.delete('/:id', deleteEntry);  
 
 export default router;

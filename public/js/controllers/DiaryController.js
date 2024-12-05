@@ -1,12 +1,12 @@
 angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryService', function($scope, DiaryService) {
-    // Inisialisasi variabel
+    // Initialize variables
     $scope.entries = [];
     $scope.search = '';
     $scope.filterTag = '';
-    $scope.allTags = []; // Menyimpan semua tag unik
-    $scope.entryIdToUpdate = null; // Menyimpan ID entri untuk update
+    $scope.allTags = []; 
+    $scope.entryIdToUpdate = null; 
 
-    // Fungsi untuk mengambil entri diary dari server
+   // Fetch diary entries with optional search and tag filter
     $scope.fetchEntries = function() {
         const params = {
             search: $scope.search || '',
@@ -17,7 +17,6 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
             $scope.entries = response.data.map(entry => {
                 const createdAt = new Date(entry.createdAt);
 
-                // Format tanggal
                 const formattedDate = createdAt.toLocaleDateString('en-US', {
                     weekday: 'long',
                     year: 'numeric',
@@ -32,14 +31,13 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
                 };
             });
 
-            // Perbarui daftar semua tag unik
             $scope.updateAllTags();
         }).catch(err => {
             console.error("Failed to fetch entries:", err);
         });
     };
 
-    // Fungsi untuk membuat entri baru
+    // Create a new diary entry
     $scope.createEntry = function() {
         if (!$scope.newTitle || !$scope.newContent || !$scope.newMood) {
             alert("Please fill in all fields before submitting.");
@@ -63,16 +61,16 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
         });
     };
 
-    // Fungsi untuk mengedit entri diary
+    // Edit an existing diary entry
     $scope.editEntry = function(entry) {
         $scope.newTitle = entry.title;
         $scope.newContent = entry.content;
-        $scope.newTags = entry.tags.join(', '); // Gabungkan tag menjadi string terpisah koma
+        $scope.newTags = entry.tags.join(', '); 
         $scope.newMood = entry.mood;
-        $scope.entryIdToUpdate = entry._id; // Simpan ID entri untuk update
+        $scope.entryIdToUpdate = entry._id; 
     };
 
-    // Fungsi untuk memperbarui entri diary
+    // Update an existing diary entry
     $scope.updateEntry = function() {
         if (!$scope.entryIdToUpdate) {
             alert("No entry selected for update.");
@@ -96,7 +94,7 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
         });
     };
 
-    // Fungsi untuk menghapus entri diary
+    // Delete a diary entry
     $scope.deleteEntry = function(id) {
         if (!confirm("Are you sure you want to delete this entry?")) return;
 
@@ -109,7 +107,7 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
         });
     };
 
-    // Fungsi untuk memperbarui daftar semua tag unik
+    // Update unique tags from all entries
     $scope.updateAllTags = function() {
         const tagsSet = new Set();
         $scope.entries.forEach(entry => {
@@ -118,7 +116,7 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
         $scope.allTags = Array.from(tagsSet);
     };
 
-    // Fungsi untuk mereset form setelah update atau create
+    // Reset form fields after create or update
     $scope.resetForm = function() {
         $scope.newTitle = '';
         $scope.newContent = '';
@@ -127,6 +125,6 @@ angular.module('betterLife').controller('DiaryController', ['$scope', 'DiaryServ
         $scope.entryIdToUpdate = null;
     };
 
-    // Inisialisasi fetch entri diary saat pertama kali controller di-load
+    // Initialize by fetching diary entries
     $scope.fetchEntries();
 }]);

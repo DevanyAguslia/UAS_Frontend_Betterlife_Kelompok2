@@ -1,6 +1,6 @@
-// models/mood.js
 import mongoose from 'mongoose';
 
+// Make a mood schema 
 const moodSchema = new mongoose.Schema({
     // User's current mood selection (excited/happy/neutral/sad/angry)
     mood: {

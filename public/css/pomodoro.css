@@ -13,12 +13,14 @@
     margin-bottom: 2rem;
 }
 
+/* Card Body Styling */
 .card-body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Card Header Styling */
 .card-header {
     background-color: #2E4053;
     color: #F4F6F7;
@@ -27,6 +29,7 @@
     padding: 1rem 1.5rem;
 }
 
+/* Navigation Link Styling */
 .nav-link {
     cursor: pointer;
 }
@@ -48,17 +51,19 @@
     justify-content: center;
 }
 
+/* Timer Circle Hover Effect */
 .timer-circle:hover {
     transform: scale(1.02);
     cursor: pointer;
     box-shadow: 0 0 25px rgba(52, 152, 219, 0.4);
 }
 
-/* Duration Setup Styling */
+/* Duration Selector Styling */
 .duration-selector {
     margin: 20px 0;
 }
 
+/* Button Group Styling */
 .duration-selector .btn-group {
     display: flex;
     flex-wrap: wrap;
@@ -66,16 +71,19 @@
     gap: 10px;
 }
 
+/* Button Styling */
 .duration-selector .btn {
     border-radius: 20px;
     padding: 8px 16px;
     transition: all 0.3s ease;
 }
 
+/* Button Hover Effect */
 .duration-selector .btn:hover {
     transform: translateY(-2px);
 }
 
+/* Current Settings Display */
 .current-settings {
     background-color: #f8f9fa;
     padding: 8px 16px;
@@ -83,7 +91,7 @@
     display: inline-block;
 }
 
-/* Button Styling */
+/* Primary Button Styling */
 .btn-primary {
     background-color: #3498DB;
     border-color: #3498DB;
@@ -95,25 +103,28 @@
     transition: all 0.3s ease;
 }
 
+/* Primary Button Hover Effect */
 .btn-primary:hover {
     background-color: #2E4053;
     border-color: #2E4053;
     transform: translateY(-2px);
 }
 
+/* Secondary Button Styling */
 .btn-secondary {
     background-color: #F4F6F7;
     border-color: #2E4053;
     color: #2E4053;
 }
 
+/* Secondary Button Hover Effect */
 .btn-secondary:hover {
     background-color: #2E4053;
     border-color: #2E4053;
     color: #F4F6F7;
 }
 
-/* Session Type */
+/* Navigation Pills for Session Type */
 .nav-pills .nav-link {
     color: #2E4053;
     border-radius: 20px;
@@ -122,6 +133,7 @@
     transition: all 0.3s ease;
 }
 
+/* Active Navigation Pills Styling */
 .nav-pills .nav-link.active {
     background-color: #3498DB;
     color: white;
@@ -132,6 +144,7 @@
     color: #2E4053;
 }
 
+/* Table Header Styling */
 .table thead th {
     background-color: #F4F6F7;
     border-bottom: 2px solid #3498DB;
@@ -139,24 +152,26 @@
     font-weight: 600;
 }
 
+/* Table Row Hover Effect */
 .table tbody tr:hover {
     background-color: rgba(52, 152, 219, 0.1);
 }
 
-/* Alert Styling */
+/* Success Alert Styling */
 .alert-success {
     background-color: rgba(52, 152, 219, 0.2);
     border-color: #3498DB;
     color: #2E4053;
 }
 
+/* Danger Alert Styling */
 .alert-danger {
     background-color: rgba(46, 64, 83, 0.2);
     border-color: #2E4053;
     color: #2E4053;
 }
 
-/* Form Controls */
+/* Form Control Styling */
 .form-control {
     border-radius: 8px;
     border: 2px solid #F4F6F7;
@@ -164,12 +179,13 @@
     transition: all 0.3s ease;
 }
 
+/* Form Control Focus Styling */
 .form-control:focus {
     border-color: #3498DB;
     box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
 }
 
-/* Session History Section */
+/* Session History Section Styling */
 .session-history {
     background-color: white;
     padding: 1.5rem;
@@ -177,13 +193,14 @@
     margin-top: 2rem;
 }
 
+/* Session History Title Styling */
 .session-history h4 {
     color: #2E4053;
     margin-bottom: 1.5rem;
     font-weight: 600;
 }
 
-/* Time Display */
+/* Time Display Styling */
 .display-4 {
     color: #F4F6F7;
     font-weight: 700;
@@ -192,45 +209,55 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Timer Circle for Smaller Screens */
     .timer-circle {
         width: 220px;
         height: 220px;
     }
 
+    /* Time Display Font Size */
     .display-4 {
         font-size: 2.5rem;
     }
 
+    /* Button Group in Duration Selector */
     .duration-selector .btn-group {
         flex-direction: column;
     }
 
+    /* Button Width in Duration Selector */
     .duration-selector .btn {
         width: 100%;
         margin-bottom: 10px;
     }
 
+    /* Hide Span in Timer Controls */
     .timer-controls button span {
         display: none;
     }
 
+    /* Timer Controls Icon Size */
     .timer-controls button i {
         font-size: 1.5rem;
     }
 
+    /* Make Table Scrollable */
     .table-responsive {
         overflow-x: auto;
     }
 
+    /* Session Form Control Width */
     .session-form .form-group {
         width: 100%;
         margin-bottom: 15px;
     }
 
+    /* Session Form Select & Input Width */
     .session-form .form-select, .session-form .form-control {
         width: 100%;
     }
 
+    /* Table Icons Font Size */
     .table td i {
         font-size: 1.2rem;
     }

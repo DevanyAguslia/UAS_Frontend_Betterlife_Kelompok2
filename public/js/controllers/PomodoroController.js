@@ -26,7 +26,7 @@ app.controller('PomodoroController', ['$scope', '$interval', 'PomodoroService',
 
         $scope.changeDuration = function(duration) {
             $scope.settings.focusDuration = duration;
-            $scope.settings.breakDuration = Math.floor(duration / 5); // Break is 1/5 of focus time
+            $scope.settings.breakDuration = Math.floor(duration / 5); 
             
             // Reset timer if not running
             if (!$scope.isRunning) {
