@@ -42,13 +42,17 @@ app.controller('SidebarController', function($scope, $location, $rootScope, Auth
     $rootScope.$on('loginSuccess', function(event, userData) {
         $scope.user = userData.user;
         $scope.isLoggedIn = true;
-        $scope.$apply(); 
     });
 
     $rootScope.$on('logoutSuccess', function() {
         $scope.user = null;
         $scope.isLoggedIn = false;
-        $scope.$apply(); 
+    });
+
+    // Listen for profile updates
+    $rootScope.$on('profileUpdated', function(event, updatedUser) {
+        $scope.user = updatedUser;
+        $scope.$apply();
     });
 
     $scope.logout = function() {
