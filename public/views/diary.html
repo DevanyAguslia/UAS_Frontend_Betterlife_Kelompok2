@@ -4,26 +4,17 @@
 
 <div class="container diary" ng-controller="DiaryController">
     <div class="header text-center">
-        <h1 class="text-primary">Diary Reflection Journal</h1>
+        <h1 class="text-light">Diary Reflection Journal</h1>
     </div>
 
     <!-- Search and Filter -->
     <div class="search-bar mt-4">
         <label for="search" class="form-label">Search Diary Entries:</label>
-        <input 
-            id="search"
-            type="text" 
-            ng-model="search" 
-            placeholder="Search by title or reflection content..." 
-            class="form-control mb-3" 
-            ng-change="fetchEntries()" />
-            
+        <input id="search" type="text" ng-model="search" placeholder="Search by title or reflection content..."
+            class="form-control mb-3" ng-change="fetchEntries()" />
+
         <label for="filterTag" class="form-label">Filter by Tag:</label>
-        <select 
-            id="filterTag" 
-            class="form-control mb-3" 
-            ng-model="filterTag" 
-            ng-change="fetchEntries()">
+        <select id="filterTag" class="form-control mb-3" ng-model="filterTag" ng-change="fetchEntries()">
             <option value="">-- Select Tag --</option>
             <option ng-repeat="tag in allTags" value="{{tag}}">{{tag}}</option>
         </select>
@@ -37,10 +28,12 @@
         <input id="newTitle" type="text" ng-model="newTitle" placeholder="Title" class="form-control mb-3" />
 
         <label for="newContent" class="form-label">Reflection:</label>
-        <textarea id="newContent" ng-model="newContent" placeholder="Write your reflection..." class="form-control mb-3"></textarea>
+        <textarea id="newContent" ng-model="newContent" placeholder="Write your reflection..."
+            class="form-control mb-3"></textarea>
 
         <label for="newTags" class="form-label">Tags:</label>
-        <input id="newTags" type="text" ng-model="newTags" placeholder="Tags (comma separated)" class="form-control mb-3" />
+        <input id="newTags" type="text" ng-model="newTags" placeholder="Tags (comma separated)"
+            class="form-control mb-3" />
 
         <label for="newMood" class="form-label">Your Mood:</label>
         <select id="newMood" ng-model="newMood" class="form-control mb-3">
@@ -70,21 +63,21 @@
 </div>
 
 
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Success</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Diary entry created successfully!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-                </div>
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Diary entry created successfully!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
+</div>
 </div>

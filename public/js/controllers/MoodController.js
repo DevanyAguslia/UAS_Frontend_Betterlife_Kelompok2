@@ -6,7 +6,7 @@ app.controller('MoodController', ['$scope', '$http', '$timeout', function ($scop
 
     // Set mood default
     $scope.currentMood = {
-        mood: 'neutral', // Nilai awal mood
+        mood: 'neutral',
         date: new Date(),
         answers: []
     };

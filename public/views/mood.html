@@ -1,9 +1,12 @@
 <head>
     <link href="css/mood.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container mood-container">
         <h1 class="mood-title mb-4">Personal Mood Tracker</h1>
+
+        <!-- Mood Form -->
         <div class="mood-form bg-dark p-4 rounded">
             <!-- Mood Selection -->
             <div class="mb-4">
@@ -44,7 +47,8 @@
                     <div class="question mb-3" ng-repeat="question in questions">
                         <label class="form-label text-white">{{question.text}}</label>
                         <textarea class="form-control bg-dark text-white" ng-model="currentMood.answers[$index].answer"
-                            rows="2" placeholder="Write your answer here..."></textarea>
+                            rows="2" placeholder="Write your answer here...">
+                        </textarea>
                     </div>
 
                     <div class="text-center mt-4">
@@ -53,9 +57,6 @@
                             <span ng-if="isLoading">
                                 <i class="fas fa-spinner fa-spin"></i> Saving...
                             </span>
-                        </button>
-                        <button type="button" class="btn btn-danger" ng-click="deleteAllLogs()">
-                            Delete All Logs
                         </button>
                     </div>
                 </form>
@@ -68,6 +69,7 @@
                 No moods found. Please log your first mood.
             </div>
 
+            <!-- Single Mood Log -->
             <div class="mood-log-item bg-dark p-3 rounded mb-3" ng-repeat="mood in moods | orderBy:'-date'">
                 <!-- Mood Header -->
                 <div class="d-flex justify-content-between align-items-center">
@@ -82,7 +84,7 @@
                             </span>
                             <span class="mood-text text-capitalize text-warning ms-2">{{mood.mood}}</span>
                         </div>
-                        <span class="text-white-50">{{ formatDate(mood.date) }}</span>
+                        <span class="text-white-50">{{formatDate(mood.date)}}</span>
                     </div>
                     <div class="btn-group">
                         <button class="btn btn-sm btn-outline-warning me-2" ng-click="startEdit(mood)"
@@ -110,8 +112,8 @@
                     <form ng-submit="saveEdit(mood)" class="edit-form">
                         <div class="mb-3" ng-repeat="answer in mood.editAnswers">
                             <label class="text-white-50 mb-1"><small>{{answer.question}}</small></label>
-                            <textarea class="form-control bg-dark text-white" ng-model="answer.answer"
-                                rows="2"></textarea>
+                            <textarea class="form-control bg-dark text-white" ng-model="answer.answer" rows="2">
+                            </textarea>
                         </div>
                         <div class="text-end mt-3">
                             <button type="button" class="btn btn-sm btn-secondary me-2" ng-click="cancelEdit(mood)">
@@ -126,3 +128,6 @@
             </div>
         </div>
     </div>
+</body>
+
+</html>
