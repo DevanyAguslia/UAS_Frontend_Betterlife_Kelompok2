@@ -1,4 +1,4 @@
-/* .task-container {
+.task-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -26,23 +26,46 @@
 }
 
 .badge.open {
-    background-color: #000;
-    color: white;
+    background-color: #d9f103;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .badge.progress {
     background-color: #ffc107;
     color: black;
+    padding: 10px 12px;
+    height: 36px;
+    line-height: 16px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .badge.testing {
     background-color: #dc3545;
     color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .badge.done {
     background-color: #28a745;
     color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content {
@@ -69,9 +92,88 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
 .btn-group .btn {
-    border-radius: 20px;
-    margin: 0 5px;
-    padding: 8px 20px;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+/* Default state */
+.btn-group .btn-outline-primary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Active state */
+.btn-group .btn-primary {
+    background: #007bff;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.35);
+}
+
+/* Hover effects */
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific colors for each button when active */
+.btn-group .btn[ng-click="setFilter('ALL')"].btn-primary {
+    background: #6c757d;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.35);
+}
+
+.btn-group .btn[ng-click="setFilter('OPEN')"].btn-primary {
+    background: #d9f103;
     color: #000;
-} */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.btn-group .btn[ng-click="setFilter('PROGRESS')"].btn-primary {
+    background: #ffc107;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.35);
+}
+
+.btn-group .btn[ng-click="setFilter('TESTING')"].btn-primary {
+    background: #dc3545;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.35);
+}
+
+.btn-group .btn[ng-click="setFilter('DONE')"].btn-primary {
+    background: #28a745;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.35);
+}
+
+/* Button focus state */
+.btn-group .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-group {
+        flex-wrap: wrap;
+    }
+
+    .btn-group .btn {
+        flex: 1 1 calc(33.333% - 10px);
+        min-width: 80px;
+        padding: 8px 15px;
+    }
+}
