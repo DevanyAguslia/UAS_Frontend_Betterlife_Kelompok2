@@ -1,8 +1,9 @@
+/* Sidebar Styling */
 .sidebar {
     width: 250px;
     position: fixed;
-    top: 5%;
-    left: 1%;
+    top: 0;
+    left: 0;
     background-color: rgba(46, 64, 83, 0.9);
     backdrop-filter: blur(8px);
     box-shadow: 0 0.5rem 2rem rgba(46, 64, 83, 0.5);
@@ -11,96 +12,83 @@
     display: flex;
     flex-direction: column;
     z-index: 99999;
-    /* Increased z-index */
     transition: transform 0.3s ease-in-out;
-    isolation: isolate;
-    /* Creates a new stacking context */
+    margin: 20px;
 }
 
-/* Overlay untuk background saat sidebar terbuka */
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99998;
-    /* Just below sidebar */
-    display: none;
-}
-
-.sidebar-overlay.active {
-    display: block;
-}
-
+/* Sidebar Container */
 .sidebar-container {
     position: relative;
     z-index: 99999;
-    /* Match sidebar z-index */
 }
 
+/* Sidebar Closed State */
 .sidebar-closed {
     transform: translateX(-70%);
 }
 
+/* Elements hidden in sidebar closed state */
 .sidebar-closed .nav-link-sidebar span,
 .sidebar-closed #betterlife {
     display: none;
 }
 
+/* Sidebar link icon width adjustment in closed state */
 .sidebar-closed .nav-link-sidebar i {
     width: 24px;
 }
 
+/* Sidebar links in closed state are aligned to the right */
 .sidebar-closed .nav-link-sidebar {
     justify-content: end;
     margin-right: 5%;
 }
 
+/* Sidebar Open State */
 .sidebar-open .nav-link-sidebar span {
     display: inline-block;
 }
 
+/* Sidebar in open state */
 .sidebar-open {
     transform: translateX(0);
 }
 
+/* Sidebar Toggle Button */
 .sidebar-toggle {
     cursor: pointer;
     font-size: 24px;
     margin: 20px;
     z-index: 100000;
-    /* Slightly higher than sidebar */
     position: relative;
 }
 
-/* Main content wrapper */
+/* Main Content Wrapper */
 .main-content {
     position: relative;
     z-index: 1;
-    /* Lower z-index for main content */
 }
 
-/* Logo Styles */
+/* Logo Styling */
 .logo h2 {
     color: #fff;
     cursor: pointer;
     transition: .2s ease;
     position: relative;
     z-index: 100000;
-    /* Match sidebar-toggle */
 }
 
+/* Logo Hover Effect */
 .logo h2:hover {
     transform: scale(1.05);
 }
 
+/* Hamburger Icon Style */
 .hamburg {
     font-size: 18px;
 }
 
-/* Navigation Links */
+/* Sidebar Navigation Link Styling */
 .nav-link-sidebar {
     color: #F4F6F7;
     padding: 12px 20px;
@@ -110,15 +98,16 @@
     gap: 12px;
     position: relative;
     z-index: 100000;
-    /* Ensure links are clickable */
 }
 
+/* Sidebar Link Icon Styling */
 .nav-link-sidebar i {
     width: 24px;
     font-size: 18px;
     text-align: center;
 }
 
+/* Sidebar Link Hover Effect */
 .nav-link-sidebar:hover {
     color: #3498DB !important;
     font-weight: 500;
@@ -126,6 +115,7 @@
     text-decoration: none;
 }
 
+/* Active Sidebar Link Styling */
 .nav-link-sidebar.active {
     color: #3498DB !important;
     transform: translateX(8px);
@@ -133,7 +123,7 @@
     background: rgba(52, 152, 219, 0.1);
 }
 
-/* Profile Picture */
+/* Profile Circle Styling */
 .profile-circle {
     width: 40px;
     height: 40px;
@@ -146,17 +136,18 @@
     border: 2px solid #F4F6F7;
     position: relative;
     z-index: 100000;
-    /* Match other interactive elements */
 }
 
+/* Profile Image within the Circle */
 .profile-circle img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Responsive */
+/* Responsive Design for Mobile Screens */
 @media (max-width: 768px) {
+    /* Sidebar adjustments for small screens */
     .sidebar {
         width: 100%;
         height: auto;
@@ -164,10 +155,12 @@
         margin-bottom: 20px;
     }
 
+    /* Hide sidebar toggle button on small screens */
     .sidebar-toggle {
         display: none;
     }
 
+    /* Sidebar position adjustment on small screens */
     .sidebar {
         transform: translateX(-25%);
     }

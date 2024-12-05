@@ -22,7 +22,6 @@ const pomodoroController = {
         try {
             const { type, duration, completedAt } = req.body;
 
-            // Validation
             if (duration <= 0) {
                 return res.status(400).json({
                     success: false,

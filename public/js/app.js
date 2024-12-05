@@ -4,8 +4,10 @@ var app = angular.module('betterLife', ['ngRoute'])
     });
 
 app.config(function ($routeProvider, $locationProvider) {
+    // Configure the hash prefix for routing
     $locationProvider.hashPrefix('!');
 
+    // Define routes for different views and associate controllers with them
     $routeProvider
         .when('/home', {
             templateUrl: 'views/home.html',
@@ -48,6 +50,7 @@ app.config(function ($routeProvider, $locationProvider) {
         });
 });
 
+// Custom filter to pad numbers to 2 digits
 app.filter('padNumber', function () {
     return function (number) {
         return (number < 10) ? '0' + number : number;

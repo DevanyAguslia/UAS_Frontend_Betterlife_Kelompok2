@@ -1,7 +1,7 @@
 app.controller('BooksController', function($scope, $timeout, BooksService) {
     // Initialize scope variables
     $scope.books = [];
-    // Tambahkan ini di BooksController.js setelah inisialisasi $scope.books
+    // Preset books to display
     $scope.presetBooks = [
         {
             title: "Deep Work",
@@ -125,18 +125,16 @@ app.controller('BooksController', function($scope, $timeout, BooksService) {
         }
     ];
 
-    // Modifikasi fungsi loadBooks
+    // Load books from the backend, combining with preset books
     $scope.loadBooks = function() {
         BooksService.getBooks()
             .then(function(data) {
                 console.log('Books data received:', data);
-                // Gabungkan buku dari database dengan buku preset
                 $scope.books = Array.isArray(data) ? [...data, ...$scope.presetBooks] : $scope.presetBooks;
             })
             .catch(function(error) {
                 console.error('Error loading books:', error);
                 $scope.errorMessage = 'Error loading books: ' + (error.message || 'Unknown error');
-                // Jika gagal load dari database, tetap tampilkan buku preset
                 $scope.books = $scope.presetBooks;
             });
     };
@@ -182,9 +180,8 @@ app.controller('BooksController', function($scope, $timeout, BooksService) {
         BooksService.addBook($scope.newBook)
             .then(function(newBook) {
                 console.log('Book added successfully:', newBook);
-                $scope.books.unshift(newBook); // Add to beginning of array
+                $scope.books.unshift(newBook); 
                 
-                // Reset form
                 $scope.newBook = {
                     title: '',
                     summary: '',

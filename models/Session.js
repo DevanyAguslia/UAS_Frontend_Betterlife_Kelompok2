@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 
+// Make a session schema for pomodoro
 const sessionSchema = new mongoose.Schema({
     type: {
         type: String,

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-// Definisikan schema untuk entri Diary
+// Make a diary schema
 const diarySchema = new mongoose.Schema({
     title: { 
         type: String, 
@@ -10,14 +10,14 @@ const diarySchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    tags: [String], // Array untuk menyimpan tags
+    tags: [String],
     mood: { 
         type: String, 
-        enum: ['Happy', 'Excited', 'Neutral', 'Sad', 'Angry'], // Mood yang dapat dipilih
+        enum: ['Happy', 'Excited', 'Neutral', 'Sad', 'Angry'],
         required: true 
     },
     formattedDate: { 
-        type: String, // Format tanggal (WIB)
+        type: String, 
     },
     createdAt: { 
         type: Date, 
@@ -25,5 +25,4 @@ const diarySchema = new mongoose.Schema({
     }
 });
 
-// Membuat model berdasarkan schema yang telah didefinisikan
 export default mongoose.model('Diary', diarySchema);
