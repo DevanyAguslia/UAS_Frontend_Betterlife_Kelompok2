@@ -1,7 +1,18 @@
+<!-- views/task.html -->
 <div class="task-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Manage Todos</h1>
-        <button class="btn btn-primary" ng-click="openAddModal()">+ Add Todo</button>
+        <h1>Manage your Tasks Here</h1>
+        <button class="btn btn-primary" ng-click="openAddModal()">+ Add New Task</button>
+    </div>
+
+    <!-- Search and Sort Controls -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="search-container" style="width: 1500px;">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search tasks..." ng-model="searchQuery"
+                    ng-change="filterTasks()">
+            </div>
+        </div>
     </div>
 
     <div class="btn-group mb-4">
@@ -20,7 +31,8 @@
     </div>
 
     <div class="task-list">
-        <div class="task-item glass-card" ng-repeat="task in tasks | filter:filterTasks">
+        <div class="task-item glass-card"
+            ng-repeat="task in filteredTasks = (tasks | filter:filterByStatus | filter:searchFilter | orderBy:'title':sortReverse)">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <h5 class="text-light">{{task.title}}</h5>
@@ -36,6 +48,10 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <!-- No results message -->
+        <div class="text-center text-muted mt-4" ng-if="filteredTasks.length === 0">
+            <p>No tasks found matching your search criteria</p>
         </div>
     </div>
 

@@ -5,10 +5,14 @@
 }
 
 .mood-title {
-    color: #ffd700;
+    color: #4a0162;
     text-align: center;
     font-size: 2.5rem;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    font-weight: 600;
+    padding: 15px 0;
+    margin-bottom: 25px;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(42, 42, 42, 0.3);
 }
 
 /* Emoji Buttons */
@@ -39,8 +43,10 @@
 }
 
 .emoji-button.active {
-    background: rgba(255, 215, 0, 0.2);
-    border: 2px solid #ffd700;
+    background: rgba(0, 123, 255, 0.2);
+    /* Changed from gold to blue */
+    border: 2px solid #007bff;
+    /* Changed from #ffd700 to blue */
 }
 
 /* Form Controls */
@@ -51,33 +57,40 @@
 
 .form-control:focus {
     background-color: #2a2a2a !important;
-    border-color: #ffd700;
-    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+    border-color: #007bff;
+    /* Changed from #ffd700 to blue */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    /* Changed to blue shadow */
     color: white !important;
 }
 
 /* Buttons */
 .btn-warning {
-    background-color: #ffd700;
+    background-color: #007bff;
+    /* Changed from #ffd700 to blue */
     border: none;
-    color: #000;
+    color: #fff;
+    /* Changed text color to white for better contrast */
     font-weight: bold;
     transition: all 0.3s ease;
 }
 
 .btn-warning:hover {
-    background-color: #ffed4a;
+    background-color: #0056b3;
+    /* Darker blue on hover */
     transform: translateY(-2px);
 }
 
 .btn-warning:disabled {
-    background-color: #998200;
+    background-color: #004085;
+    /* Darker blue when disabled */
     transform: none;
 }
 
 /* Mood History */
 .mood-log-item {
-    border-left: 4px solid #ffd700;
+    border-left: 4px solid #007bff;
+    /* Changed from #ffd700 to blue */
     transition: all 0.3s ease;
     animation: slideIn 0.5s ease;
 }
@@ -116,8 +129,8 @@
 }
 
 .questions-form textarea:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 /* Loading Spinner */

@@ -2,9 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(-45deg, #0331c7, #2376e9, #23a6d5, #007d96) !important;
-    background-size: 400% 400% !important;
-    background-attachment: fixed !important;
+    background-image: linear-gradient(to left top, #000a57, #001a66, #002974, #003882, #004790, #00579f, #0567ad, #1277ba, #248dcc, #37a3de, #4bb9ef, #60d0ff) !important;
     animation: gradient 15s ease infinite;
 }
 
@@ -19,9 +17,11 @@ body {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -70,7 +70,8 @@ footer {
 }
 
 /* Override Bootstrap background classes to maintain gradient */
-.bg-white, .bg-light {
+.bg-white,
+.bg-light {
     background: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
