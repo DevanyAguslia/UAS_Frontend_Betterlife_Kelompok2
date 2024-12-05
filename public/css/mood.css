@@ -5,10 +5,14 @@
 }
 
 .mood-title {
-    color: #ffd700;
+    color: #4a0162;
     text-align: center;
     font-size: 2.5rem;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    font-weight: 600;
+    padding: 15px 0;
+    margin-bottom: 25px;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(42, 42, 42, 0.3);
 }
 
 /* Emoji Buttons */
@@ -39,45 +43,50 @@
 }
 
 .emoji-button.active {
-    background: rgba(255, 215, 0, 0.2);
-    border: 2px solid #ffd700;
+    background: rgba(0, 123, 255, 0.2);
+    border: 2px solid #007bff;
 }
 
 /* Form Controls */
 .form-control {
-    border: 1px solid #444;
+    border: 1px solid #ffffff;
     transition: all 0.3s ease;
 }
 
 .form-control:focus {
-    background-color: #2a2a2a !important;
-    border-color: #ffd700;
-    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+    background-color: #ffffff !important;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     color: white !important;
 }
 
 /* Buttons */
 .btn-warning {
-    background-color: #ffd700;
+    background-color: #007bff;
+    /* Changed from #ffd700 to blue */
     border: none;
-    color: #000;
+    color: #fff;
+    /* Changed text color to white for better contrast */
     font-weight: bold;
     transition: all 0.3s ease;
 }
 
 .btn-warning:hover {
-    background-color: #ffed4a;
+    background-color: #0056b3;
+    /* Darker blue on hover */
     transform: translateY(-2px);
 }
 
 .btn-warning:disabled {
-    background-color: #998200;
+    background-color: #004085;
+    /* Darker blue when disabled */
     transform: none;
 }
 
 /* Mood History */
 .mood-log-item {
-    border-left: 4px solid #ffd700;
+    border-left: 4px solid #007bff;
+    /* Changed from #ffd700 to blue */
     transition: all 0.3s ease;
     animation: slideIn 0.5s ease;
 }
@@ -115,10 +124,30 @@
     color: white;
 }
 
-.questions-form textarea:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+.questions-form textarea,
+.form-control {
+    background-color: rgba(40, 44, 52, 0.9) !important;
+    /* Keeping dark background */
+    border: 1px solid #444;
+    color: #ffffff !important;
+    /* Changed to white text */
 }
+
+.questions-form textarea::placeholder,
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+    /* Light gray for placeholder */
+}
+
+.questions-form textarea:focus,
+.form-control:focus {
+    background-color: rgba(40, 44, 52, 0.95) !important;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    color: #ffffff !important;
+    /* Keep white text when focused */
+}
+
 
 /* Loading Spinner */
 @keyframes spin {

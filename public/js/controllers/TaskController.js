@@ -5,6 +5,11 @@ angular.module('betterLife').controller('TaskController', ['$scope', 'TaskServic
     $scope.modalTitle = '';
     $scope.loading = false;
 
+    // Search and sort properties
+    $scope.searchQuery = '';
+    $scope.sortOrder = 'asc';
+    $scope.sortReverse = false;
+
     let taskModal, deleteModal;
 
     // Initialize modals
@@ -32,14 +37,34 @@ angular.module('betterLife').controller('TaskController', ['$scope', 'TaskServic
     // Initialize
     loadTasks();
 
+    // Search filter function
+    $scope.searchFilter = function (task) {
+        if (!$scope.searchQuery) return true;
+
+        const query = $scope.searchQuery.toLowerCase();
+        return task.title.toLowerCase().includes(query) ||
+            task.description.toLowerCase().includes(query);
+    };
+
+    // Set sort order
+    $scope.setSortOrder = function (order) {
+        $scope.sortOrder = order;
+        $scope.sortReverse = order === 'desc';
+    };
+
     // Filter tasks
     $scope.setFilter = function (status) {
         $scope.filter = status;
     };
 
-    $scope.filterTasks = function (task) {
+    $scope.filterByStatus = function (task) {
         if ($scope.filter === 'ALL') return true;
         return task.status === $scope.filter;
+    };
+
+    // Combined filter function for both status and search
+    $scope.filterTasks = function (task) {
+        return $scope.filterByStatus(task) && $scope.searchFilter(task);
     };
 
     // Edit task
@@ -96,6 +121,7 @@ angular.module('betterLife').controller('TaskController', ['$scope', 'TaskServic
                 console.error('Error saving task:', error);
             });
     };
+
 
     // Status badge class
     $scope.getStatusClass = function (status) {
