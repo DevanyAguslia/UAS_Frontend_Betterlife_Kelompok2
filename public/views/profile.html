@@ -1,51 +1,182 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Profile Management</h3>
-                </div>
-                <div class="card-body">
+            <div class="card glass-card">
+                <div class="card-body p-5">
+                    <!-- Profile Header -->
+                    <div class="text-center mb-4">
+                        <div class="profile-picture-container mb-3">
+                            <div class="profile-circle mx-auto">
+                                <i class="fas fa-user fa-3x text-light"></i>
+                            </div>
+                        </div>
+                        <h2 class="text-light">Profile Settings</h2>
+                    </div>
+
+                    <!-- Alert Messages -->
                     <div class="alert alert-danger" ng-if="errorMessage">
                         {{errorMessage}}
                     </div>
-                    
+                    <div class="alert alert-success" ng-if="successMessage">
+                        {{successMessage}}
+                    </div>
+
+                    <!-- Profile Form -->
                     <form name="profileForm" ng-submit="updateProfile()" novalidate>
-                        <div class="mb-3">
-                            <label class="form-label">Username</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                ng-model="profile.username" 
-                                required>
+                        <!-- Username Field -->
+                        <div class="mb-4">
+                            <label class="form-label text-light">Username</label>
+                            <input type="text" 
+                                   class="form-control bg-transparent text-light" 
+                                   ng-model="profile.username" 
+                                   required>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input 
-                                type="email" 
-                                class="form-control" 
-                                ng-model="profile.email" 
-                                required>
+
+                        <!-- Email Display (Read-only) -->
+                        <div class="mb-4">
+                            <label class="form-label text-light">Email</label>
+                            <input type="email" 
+                                   class="form-control bg-transparent text-light" 
+                                   ng-model="profile.email" 
+                                   readonly>
+                            <small class="text-muted">Email cannot be changed for security reasons</small>
                         </div>
-                        
-                        <div class="d-flex justify-content-between">
-                            <button 
-                                type="submit" 
-                                class="btn btn-primary" 
-                                ng-disabled="profileForm.$invalid">
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" 
+                                    class="btn btn-primary px-4"
+                                    ng-disabled="profileForm.$invalid">
                                 Update Profile
                             </button>
-                            
-                            <button 
-                                type="button" 
-                                class="btn btn-danger" 
-                                ng-click="deleteAccount()">
+                            <button type="button" 
+                                    class="btn btn-danger"
+                                    ng-click="confirmDelete()">
                                 Delete Account
                             </button>
                         </div>
                     </form>
                 </div>
+            </div>
+
+            <!-- Profile Statistics Section -->
+            <div class="card glass-card mt-4">
+                <div class="card-body p-4">
+                    <h4 class="text-light mb-4">Account Statistics</h4>
+                    
+                    <!-- Pomodoro Stats -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3">Pomodoro Sessions</h5>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-primary bg-opacity-25 text-center">
+                                        <h6 class="text-light">Total Sessions</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.pomodoro.totalSessions || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-success bg-opacity-25 text-center">
+                                        <h6 class="text-light">Focus Sessions</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.pomodoro.focusSessions || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-info bg-opacity-25 text-center">
+                                        <h6 class="text-light">Break Sessions</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.pomodoro.breakSessions || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-warning bg-opacity-25 text-center">
+                                        <h6 class="text-light">Total Hours</h6>
+                                        <div class="h3 mb-0 text-light">{{(stats.pomodoro.totalDuration || 0)/60 | number:1}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks Stats -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3">Tasks</h5>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-primary bg-opacity-25 text-center">
+                                        <h6 class="text-light">Total Tasks</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.tasks.total || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-success bg-opacity-25 text-center">
+                                        <h6 class="text-light">Completed</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.tasks.completed || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-warning bg-opacity-25 text-center">
+                                        <h6 class="text-light">In Progress</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.tasks.inProgress || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3 rounded bg-info bg-opacity-25 text-center">
+                                        <h6 class="text-light">Open</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.tasks.open || 0}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Books Stats -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3">Books</h5>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="p-3 rounded bg-primary bg-opacity-25 text-center">
+                                        <h6 class="text-light">Total Books</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.books.total || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="p-3 rounded bg-success bg-opacity-25 text-center">
+                                        <h6 class="text-light">Read</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.books.read || 0}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="p-3 rounded bg-warning bg-opacity-25 text-center">
+                                        <h6 class="text-light">Unread</h6>
+                                        <div class="h3 mb-0 text-light">{{stats.books.unread || 0}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content glass-card">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-light">Confirm Account Deletion</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-light">
+                <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                <p class="text-danger">All your data including tasks, sessions, and books will be permanently deleted.</p>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteAccount()">Delete Account</button>
             </div>
         </div>
     </div>
