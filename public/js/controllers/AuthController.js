@@ -142,6 +142,11 @@ app.controller('AuthController', ['$scope', '$location', '$rootScope', 'AuthServ
             });
         }
 
+        // Go back to home
+        $scope.goHome = function() {
+            $location.path('/home'); 
+        };
+
         // Initialize profile data if on profile page
         if ($location.path() === '/profile') {
             $scope.getProfile();
